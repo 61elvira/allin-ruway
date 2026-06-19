@@ -1,0 +1,1 @@
+<h1>Registro de Trabajador</h1>
