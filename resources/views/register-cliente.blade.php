@@ -1,1 +1,0 @@
-<h1>Registro de Cliente</h1>
