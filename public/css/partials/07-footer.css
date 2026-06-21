@@ -1,0 +1,11 @@
+/* ==========================================================================
+   FOOTER — ya nu se que poner me dio musho sueño
+   ========================================================================== */
+
+.footer {
+    background: rgb(138, 51, 51);
+    color: white;
+    padding: 40px 80px;
+    display: flex;
+    justify-content: space-between;
+}

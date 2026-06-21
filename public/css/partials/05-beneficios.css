@@ -1,0 +1,84 @@
+/* ==========================================================================
+   BENEFICIOS - pos que se le va a hacer muejeje
+   ========================================================================== */
+
+.beneficios-section {
+    padding: 120px 80px;
+    background: linear-gradient(to bottom, #faf5f5, #ffffff);
+}
+
+.beneficios-container {
+    max-width: 1400px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+}
+
+.beneficios-content {
+    flex: 1;
+}
+
+.beneficio-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 35px;
+    padding: 20px;
+    border-radius: 20px;
+    transition: .3s;
+}
+
+.beneficio-item:hover {
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(90, 18, 18, .10);
+}
+
+.beneficio-item span {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #5a1212;
+}
+
+.beneficio-item h3 {
+    color: #5a1212;
+    margin-bottom: 8px;
+    font-size: 1.3rem;
+}
+
+.beneficio-item p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.beneficios-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.beneficios-image img {
+    width: 100%;
+    max-width: 550px;
+    border-radius: 30px;
+    object-fit: cover;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, .15);
+    transition: .4s;
+}
+
+.beneficios-image img:hover {
+    transform: scale(1.03);
+}
+
+/* Beneficios — tablet / móvil */
+@media (max-width: 900px) {
+    .beneficios-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .beneficios-image img {
+        max-width: 100%;
+    }
+}

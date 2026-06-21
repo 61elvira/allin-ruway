@@ -15,7 +15,7 @@
 
         <li><a href="#beneficios">Beneficios</a></li>
 
-        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#soporte">Soporte</a></li>
 
         <li>
             <a href="{{ route('login') }}" class="btn-IniciarSesion">

@@ -194,11 +194,11 @@
 
     </section>
 
-    <section id="contacto" class="section">
+    <section id="soporte" class="section">
 
-        <h2>Contacto</h2>
+        <h2>Soporte</h2>
 
-        <form class="contact-form">
+        <form class="support-form">
 
             <input type="text" placeholder="Nombre">
 
