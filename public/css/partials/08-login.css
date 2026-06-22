@@ -1,42 +1,59 @@
 /* ==========================================================================
-   LOGIN / si llegaste a leer esto es por que me amaaaaasss wiuuuu xD 
+   LOGIN / REGISTRO — guest.blade.php, login.blade.php, register.blade.php
+   Paleta: beige + negro. Las variables viven en .login-page (el <body>)
+   para no chocar con el resto del sitio (rojo/dorado).
    ========================================================================== */
 
 .login-page {
-    height: 100vh;
+    --ink: #15130f;
+    --ink-soft: #2b2620;
+    --beige-deep: #c9b48b;
+    --beige: #e8dec4;
+    --cream: #f8f4ea;
+    --taupe: #6f5f45;
+
+    position: relative;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 30px;
-    background:
-        radial-gradient(circle at top left, #8d2222, transparent 40%),
-        radial-gradient(circle at bottom right, #ff6b35, transparent 30%),
-        #4a0d0d;
     overflow: hidden;
+    font-family: 'Work Sans', sans-serif;
+    background: var(--ink);
 }
 
 .login-page::before {
     content: '';
     position: absolute;
-    width: 500px;
-    height: 500px;
+    width: 520px;
+    height: 520px;
     border-radius: 50%;
-    background: rgba(255, 80, 80, .15);
-    top: -100px;
-    left: -100px;
-    filter: blur(80px);
+    background: rgba(0, 0, 0, 0.18);
+    top: -140px;
+    left: -120px;
+    filter: blur(90px);
 }
 
 .login-page::after {
     content: '';
     position: absolute;
-    width: 400px;
-    height: 400px;
+    width: 420px;
+    height: 420px;
     border-radius: 50%;
-    background: rgba(255, 140, 0, .10);
-    bottom: -100px;
+    background: rgba(1, 1, 1, 0.25);
+    bottom: -120px;
     right: -100px;
-    filter: blur(80px);
+    filter: blur(90px);
+}
+
+/* Viñeta suave: lleva el ojo directo a la tarjeta */
+.login-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, .45) 100%);
 }
 
 .login-wrapper {
@@ -45,27 +62,61 @@
     min-height: 650px;
     display: flex;
     overflow: hidden;
-    border-radius: 25px;
-    background: #f2f2f2;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, .30);
+    border-radius: 22px;
+    background: var(--cream);
+    box-shadow: 0 30px 70px rgba(173, 98, 98, 0.45);
+    z-index: 1;
+}
+
+/* Cenefa escalonada — motivo textil andino, la firma visual de la marca */
+.login-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    z-index: 3;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10' viewBox='0 0 40 10'%3E%3Cpath d='M0 10 L0 6 L10 6 L10 0 L20 0 L20 6 L30 6 L30 10 Z' fill='%2315130f'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-size: 40px 10px;
 }
 
 .login-image {
+    position: relative;
     flex: 0.9;
-    border-right: 1px solid #d6d6d6;
+}
+
+.login-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(190deg, rgba(21, 19, 15, .10), rgba(21, 19, 15, .65));
+    mix-blend-mode: multiply;
 }
 
 .login-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
+    filter: saturate(.85) contrast(1.05);
+}
+
+.login-image-caption {
+    position: absolute;
+    left: 30px;
+    bottom: 26px;
+    z-index: 1;
+    color: var(--cream);
+    font-size: .8rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
 }
 
 .login-card {
     flex: 1;
-    background: #ececec;
-    padding: 50px;
+    background: var(--cream);
+    padding: 60px 55px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -73,34 +124,145 @@
 
 .login-title {
     text-align: center;
-    color: #5a1212;
-    font-size: 2rem;
-    margin-bottom: 30px;
+    color: var(--ink);
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 2.4rem;
+    letter-spacing: .01em;
+    margin-bottom: 6px;
+}
+
+.login-tagline {
+    text-align: center;
+    color: var(--taupe);
+    font-size: .85rem;
+    letter-spacing: .06em;
+    margin-bottom: 35px;
 }
 
 .login-card label {
-    color: #3a3a3a !important;
+    color: var(--taupe) !important;
     font-weight: 600;
+    font-size: .78rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
 }
 
-.login-card input {
-    background: white !important;
-    color: #222 !important;
-    border: 1px solid #ccc !important;
+/* Etiqueta y campo siempre uno debajo del otro, mismo ancho */
+.login-card form > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-card input:not([type="checkbox"]) {
+    background: var(--beige) !important;
+    color: var(--ink) !important;
+    border: 1px solid var(--beige-deep) !important;
+    border-radius: 10px !important;
+    padding: 14px 16px !important;
+    font-size: 1.05rem !important;
+    line-height: 1.3 !important;
+    width: 100% !important;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.login-card input::placeholder {
+    color: var(--taupe);
+    opacity: .65;
+}
+
+/* Más aire entre el casillero de correo y el de contraseña */
+.login-card form > div:nth-of-type(2) {
+    margin-top: 28px !important;
+}
+
+.login-card input:not([type="checkbox"]):focus {
+    border-color: var(--ink) !important;
+    box-shadow: 0 0 0 3px rgba(21, 19, 15, .12);
+    outline: none;
+}
+
+.login-card input[type="checkbox"] {
+    accent-color: var(--ink);
 }
 
 .login-card p {
-    color: #333 !important;
+    color: var(--ink-soft) !important;
 }
 
 .login-card a {
-    color: #5a1212;
+    color: var(--taupe) !important;
+    transition: color .2s;
+}
+
+.login-card a:hover {
+    color: var(--ink) !important;
+}
+
+.login-card button[type="submit"] {
+    background: var(--ink) !important;
+    color: var(--cream) !important;
+    border-radius: 10px !important;
+    transition: transform .2s, background .2s;
+    padding: 15px 18px !important;
+}
+
+.login-card button[type="submit"]:hover {
+    background: var(--ink-soft) !important;
+    transform: translateY(-1px);
+}
+
+/* Botón principal grande y de ancho completo, al estilo Facebook */
+.login-submit {
+    display: flex !important;
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 14px 16px !important;
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    letter-spacing: .02em !important;
+}
+
+
+.login-forgot {
+    text-align: center;
+    margin-top: 14px;
+    margin-bottom: 20px;
+}
+
+.login-forgot a {
+    color: var(--taupe) !important;
+    font-size: .85rem;
+    text-decoration: underline;
+}
+
+.login-forgot a:hover {
+    color: var(--ink) !important;
+}
+
+.login-divider {
+    height: 1px;
+    background: var(--beige-deep);
+    margin: 26px 0 22px;
 }
 
 .register-btn {
-    color: #5a1212;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 13px 16px;
+    border: 1.5px solid var(--ink);
+    border-radius: 10px;
+    color: var(--ink);
     font-weight: 700;
     text-decoration: none;
+    transition: background .2s, color .2s;
+    padding-top: 20px;
+}
+
+.register-btn:hover {
+    background: #171716;
+    color: var(--cream);
 }
 
 .back-home {
@@ -109,22 +271,21 @@
     left: 25px;
     z-index: 9999;
     display: inline-block;
-    margin-bottom: 30px;
-    background: rgba(255, 255, 255, .15);
+    background: rgba(1, 1, 1, 0.12);
     backdrop-filter: blur(10px);
-    color: white;
+    color: var(--cream);
     text-decoration: none;
     padding: 12px 24px;
     border-radius: 12px;
     font-weight: 600;
-    border: 1px solid rgba(255, 255, 255, .25);
+    font-size: .9rem;
+    border: 1px solid rgba(3, 3, 3, 0.25);
     transition: .3s;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, .15);
 }
 
 .back-home:hover {
-    background: white;
-    color: #5a1212;
+    background: var(--cream);
+    color: var(--ink);
     transform: translateY(-2px);
 }
 
@@ -139,6 +300,42 @@
     }
 
     .login-card {
-        padding: 35px;
+        padding: 45px 30px;
     }
+
+    .login-title {
+        font-size: 2rem;
+    }
+}
+
+/* Separación entre los campos */
+.login-card form > div {
+    margin-bottom: 18px;
+}
+
+/* Contenedor del checkbox */
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+/* Enlace de contraseña */
+.login-forgot {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Botón Acceso */
+.login-submit {
+    margin-top: 15px;
+}
+
+/* Botón Registrarse */
+.register-btn {
+    margin-bottom: 15px;
+    margin-top: 10px;
 }
