@@ -17,7 +17,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px;
+    padding: 15px;
     overflow: hidden;
     font-family: 'Work Sans', sans-serif;
     background: var(--ink);
@@ -58,8 +58,9 @@
 
 .login-wrapper {
     width: 90%;
-    max-width: 1300px;
+    max-width: 1400px;
     min-height: 650px;
+    height: 90vh;
     display: flex;
     overflow: hidden;
     border-radius: 22px;
@@ -116,7 +117,7 @@
 .login-card {
     flex: 1;
     background: var(--cream);
-    padding: 60px 55px;
+    padding: 60px 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -129,7 +130,8 @@
     font-weight: 600;
     font-size: 2.4rem;
     letter-spacing: .01em;
-    margin-bottom: 6px;
+    line-height: 1.1;
+   
 }
 
 .login-tagline {
@@ -245,25 +247,46 @@
     background: var(--beige-deep);
     margin: 26px 0 22px;
 }
+.login-btn{
 
-.register-btn {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 13px 16px;
-    border: 1.5px solid var(--ink);
-    border-radius: 10px;
-    color: var(--ink);
-    font-weight: 700;
-    text-decoration: none;
-    transition: background .2s, color .2s;
-    padding-top: 20px;
+    width:50%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:linear-gradient(
+        135deg,
+        #6d1f1f,
+        #a13a2d
+    );
+
+    color:white;
+
+    font-size:1rem;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s ease;
+
+    box-shadow:
+        0 8px 20px rgba(109,31,31,.25);
+
 }
 
-.register-btn:hover {
-    background: #171716;
-    color: var(--cream);
+.login-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(109,31,31,.35);
+
 }
+
 
 .back-home {
     position: fixed;
@@ -334,8 +357,15 @@
     margin-top: 15px;
 }
 
-/* Botón Registrarse */
-.register-btn {
-    margin-bottom: 15px;
-    margin-top: 10px;
+/*wedaniasdajsd css de inicar sesion, contrasenia y crear cuenta creo*/
+.login-actions{
+
+    display:flex;
+
+    flex-direction:column;
+    align-items: center;
+    gap:15px;
+
+    margin-top:25px;
+
 }

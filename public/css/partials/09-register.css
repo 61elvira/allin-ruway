@@ -24,10 +24,16 @@
 
 }
 /*esto es el fondo xd*/
-
+.register-header h1{
+    line-height: 1.1;
+}
 
 .register-btn{
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 0.1px;
     background:
         linear-gradient(
             135deg,
@@ -58,4 +64,22 @@
 
     margin-top:25px;
 
+}
+.register-btn {
+    display: block;
+    width: 50%;
+    text-align: center;
+    padding: 13px 16px;
+    border: 1.5px solid var(--ink);
+    border-radius: 10px;
+    color: var(--ink);
+    font-weight: 700;
+    text-decoration: none;
+    transition: background .2s, color .2s;
+    padding-top: 20px;
+}
+
+.register-btn:hover {
+    background: #171716;
+    color: var(--cream);
 }
