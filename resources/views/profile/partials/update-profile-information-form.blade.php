@@ -27,30 +27,33 @@
         @csrf
         @method('patch')
 
+        <!-- Nombre -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full profile-input" :value="old('name', $user->name)"
-                required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')"disabled />
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full profile-input" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+            <x-input-error class="mt-2" :messages="$errors->get('name')" disabled />
         </div>
         <!-- Apellido -->
         <div class="mt-4">
             <x-input-label for="apellido" value="Apellido" />
 
-            <x-text-input id="apellido" name="apellido" type="text" class="mt-1 block w-full profile-input" :value="old('apellido', $user->apellido)" disabled />
+            <x-text-input id="apellido" name="apellido" type="text" class="mt-1 block w-full profile-input"
+                :value="old('apellido', $user->apellido)" disabled />
 
         </div>
         <!-- Teléfono -->
         <div class="mt-4">
             <x-input-label for="telefono" value="Teléfono" />
 
-            <x-text-input id="telefono" name="telefono" type="text" class="mt-1 block w-full profile-input" :value="old('telefono', $user->telefono)" disabled />
+            <x-text-input id="telefono" name="telefono" type="text" class="mt-1 block w-full profile-input"
+                :value="old('telefono', $user->telefono)" disabled />
         </div>
         <!-- Distrito -->
         <div class="mt-4">
             <x-input-label for="distrito" value="Distrito" />
 
-            <x-text-input id="distrito" name="distrito" type="text" class="mt-1 block w-full profile-input" :value="old('distrito', $user->distrito)" disabled />
+            <x-text-input id="distrito" name="distrito" type="text" class="mt-1 block w-full profile-input"
+                :value="old('distrito', $user->distrito)" disabled />
         </div>
         <!-- Especialidad -->
         <div class="mt-4">
@@ -71,7 +74,8 @@
             <x-input-label for="descripcion" value="Descripción" />
 
             <textarea id="descripcion" name="descripcion" rows="4"
-                class="mt-1 block w-full border-gray-300 rounded-md profile-input" disabled>
+                class="mt-1 block w-full border-gray-300 rounded-md profile-input"
+                disabled>{{ old('descripcion', $user->descripcion) }}</textarea>
         </div>
         <div>
             <x-input-label for="email" :value="__('Email')" />
@@ -97,16 +101,12 @@
                 </div>
             @endif
         </div>
-        
+
         <div class="profile-actions">
 
-<button
-    type="button"
-    id="editProfileBtn"
-    class="edit-btn"
->
-    Editar Perfil
-</button>
+            <button type="button" id="editProfileBtn" class="edit-btn">
+                Editar Perfil
+            </button>
 
         </div>
 
@@ -121,32 +121,32 @@
     </form>
     <script>
 
-document.addEventListener('DOMContentLoaded', function(){
+        document.addEventListener('DOMContentLoaded', function () {
 
-    const editBtn =
-        document.getElementById('editProfileBtn');
+            const editBtn =
+                document.getElementById('editProfileBtn');
 
-    const saveContainer =
-        document.getElementById('saveContainer');
+            const saveContainer =
+                document.getElementById('saveContainer');
 
-    const inputs =
-        document.querySelectorAll('.profile-input');
+            const inputs =
+                document.querySelectorAll('.profile-input');
 
-    editBtn.addEventListener('click', function(){
+            editBtn.addEventListener('click', function () {
 
-        inputs.forEach(input => {
+                inputs.forEach(input => {
 
-            input.disabled = false;
+                    input.disabled = false;
+
+                });
+
+                saveContainer.style.display = 'flex';
+
+                editBtn.style.display = 'none';
+
+            });
 
         });
 
-        saveContainer.style.display = 'flex';
-
-        editBtn.style.display = 'none';
-
-    });
-
-});
-
-</script>
+    </script>
 </section>
