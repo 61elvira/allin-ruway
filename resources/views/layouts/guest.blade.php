@@ -20,7 +20,7 @@
 <body class="login-page">
 
     <a href="/" class="back-home">
-        ← Volver al inicio
+        Volver al inicio
     </a>
 
     <div class="login-overlay"></div>

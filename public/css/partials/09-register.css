@@ -34,12 +34,11 @@
     align-items: center;
     gap: 15px;
     margin-top: 0.1px;
-    background:
-        linear-gradient(
-            135deg,
-            #7b3f00,
-            #b87d4b
-        ) !important;
+    background: linear-gradient(
+    135deg,
+    #7b6754,
+    #9a846d
+) !important;
 
     border:none !important;
 
