@@ -1,12 +1,22 @@
 <section>
-    <header>
-        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Profile Information') }}
-        </h2>
+    <header class="profile-header">
 
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __("Update your account's profile information and email address.") }}
+        <div class="profile-title-container">
+
+            <h2 class="profile-title">
+                Mi Perfil Profesional
+            </h2>
+
+            <button type="button" id="editProfileBtn" class="edit-btn">
+                Editar Perfil
+            </button>
+
+        </div>
+
+        <p class="profile-subtitle">
+            Completa tu información para que los clientes puedan conocerte mejor.
         </p>
+
     </header>
 
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
@@ -19,21 +29,62 @@
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full profile-input" :value="old('name', $user->name)"
+                required autofocus autocomplete="name" />
+            <x-input-error class="mt-2" :messages="$errors->get('name')"disabled />
         </div>
+        <!-- Apellido -->
+        <div class="mt-4">
+            <x-input-label for="apellido" value="Apellido" />
 
+            <x-text-input id="apellido" name="apellido" type="text" class="mt-1 block w-full profile-input" :value="old('apellido', $user->apellido)" disabled />
+
+        </div>
+        <!-- Teléfono -->
+        <div class="mt-4">
+            <x-input-label for="telefono" value="Teléfono" />
+
+            <x-text-input id="telefono" name="telefono" type="text" class="mt-1 block w-full profile-input" :value="old('telefono', $user->telefono)" disabled />
+        </div>
+        <!-- Distrito -->
+        <div class="mt-4">
+            <x-input-label for="distrito" value="Distrito" />
+
+            <x-text-input id="distrito" name="distrito" type="text" class="mt-1 block w-full profile-input" :value="old('distrito', $user->distrito)" disabled />
+        </div>
+        <!-- Especialidad -->
+        <div class="mt-4">
+            <x-input-label for="especialidad" value="Especialidad" />
+
+            <x-text-input id="especialidad" name="especialidad" type="text" class="mt-1 block w-full profile-input"
+                :value="old('especialidad', $user->especialidad)"disabled />
+        </div>
+        <!-- Experiencia -->
+        <div class="mt-4">
+            <x-input-label for="experiencia" value="Experiencia" />
+
+            <x-text-input id="experiencia" name="experiencia" type="text" class="mt-1 block w-full profile-input"
+                :value="old('experiencia', $user->experiencia)" disabled />
+        </div>
+        <!-- Descripción -->
+        <div class="mt-4">
+            <x-input-label for="descripcion" value="Descripción" />
+
+            <textarea id="descripcion" name="descripcion" rows="4"
+                class="mt-1 block w-full border-gray-300 rounded-md profile-input" disabled>
+        </div>
         <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+            <x-input-error class="mt-2" :messages="$errors->get('email')" disabled />
 
-            @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
+            @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
                 <div>
                     <p class="text-sm mt-2 text-gray-800 dark:text-gray-200">
                         {{ __('Your email address is unverified.') }}
 
-                        <button form="send-verification" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
+                        <button form="send-verification"
+                            class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
                             {{ __('Click here to re-send the verification email.') }}
                         </button>
                     </p>
@@ -46,19 +97,56 @@
                 </div>
             @endif
         </div>
+        
+        <div class="profile-actions">
 
-        <div class="flex items-center gap-4">
+<button
+    type="button"
+    id="editProfileBtn"
+    class="edit-btn"
+>
+    Editar Perfil
+</button>
+
+        </div>
+
+        <div class="flex items-center gap-4" id="saveContainer" style="display:none;">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600 dark:text-gray-400"
-                >{{ __('Saved.') }}</p>
+                <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"
+                    class="text-sm text-gray-600 dark:text-gray-400">{{ __('Saved.') }}</p>
             @endif
         </div>
     </form>
+    <script>
+
+document.addEventListener('DOMContentLoaded', function(){
+
+    const editBtn =
+        document.getElementById('editProfileBtn');
+
+    const saveContainer =
+        document.getElementById('saveContainer');
+
+    const inputs =
+        document.querySelectorAll('.profile-input');
+
+    editBtn.addEventListener('click', function(){
+
+        inputs.forEach(input => {
+
+            input.disabled = false;
+
+        });
+
+        saveContainer.style.display = 'flex';
+
+        editBtn.style.display = 'none';
+
+    });
+
+});
+
+</script>
 </section>
