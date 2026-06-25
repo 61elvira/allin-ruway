@@ -25,7 +25,7 @@ return new class extends Migration {
             $table->string('foto')->nullable();
 
             $table->string('rol')
-                ->default('usuario');
+                ->default('cliente');
 
         });
     }

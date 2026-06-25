@@ -20,7 +20,7 @@ class ProfileUpdateRequest extends FormRequest
 
             'name' => ['required', 'string', 'max:255'],
 
-            'apellido' => ['nullable', 'string', 'max:255'],
+            'apellido' => ['required', 'string', 'max:255'],
 
             'telefono' => ['nullable', 'string', 'max:20'],
 

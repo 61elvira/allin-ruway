@@ -1,0 +1,185 @@
+.dashboard-hero{
+    min-height: 70vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    radial-gradient(
+        circle at center,
+        rgba(196,69,105,.35) 0%,
+        rgba(139,30,63,.25) 30%,
+        #1a1a1a 100%
+    );
+
+    text-align:center;
+}
+
+.hero-content{
+    max-width:700px;
+}
+
+.hero-content h1{
+    color:white;
+    font-size:4rem;
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+.hero-content p{
+    color:#e5e5e5;
+    font-size:1.2rem;
+    margin-bottom:30px;
+}
+
+.hero-search{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+}
+
+.hero-search input{
+    width:450px;
+    padding:15px;
+
+    border:none;
+    border-radius:12px;
+}
+
+.hero-search button{
+    padding:15px 25px;
+
+    border:none;
+    border-radius:12px;
+
+    background:#C44569;
+    color:white;
+
+    cursor:pointer;
+}
+.categories-section{
+    padding:80px 50px;
+    background:#ffffff;
+}
+
+.categories-section h2{
+    text-align:center;
+    margin-bottom:40px;
+
+    font-size:2rem;
+
+    color:#8B1E3F;
+}
+
+.categories-grid{
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+}
+
+.category-card{
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    font-weight:600;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,.08);
+
+    transition:.3s;
+}
+
+.category-card:hover{
+    transform:translateY(-5px);
+}
+.workers {
+    padding: 80px 10%;
+}
+
+.workers h3 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2rem;
+}
+
+.workers-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(280px, 1fr));
+
+    gap: 30px;
+}
+
+.worker-card {
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+
+    transition: .3s;
+}
+
+.worker-card:hover {
+    transform: translateY(-5px);
+}
+
+.worker-avatar img {
+    width: 120px;
+
+    height: 120px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    margin-bottom: 15px;
+}
+
+.worker-card h4 {
+    font-size: 1.2rem;
+
+    margin-bottom: 10px;
+}
+
+.worker-card p {
+    color: #666;
+
+    margin-bottom: 8px;
+}
+
+.worker-card a {
+    display: inline-block;
+
+    margin-top: 10px;
+
+    padding: 10px 20px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    background: #b44343;
+
+    color: white;
+
+    transition: .3s;
+}
+
+.worker-card a:hover {
+    background: #963535;
+}

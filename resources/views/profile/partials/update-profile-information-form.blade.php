@@ -7,11 +7,32 @@
                 Mi Perfil Profesional
             </h2>
 
-            <button type="button" id="editProfileBtn" class="edit-btn">
-                Editar Perfil
-            </button>
+            <div class="profile-buttons">
+
+                <button type="button" id="editProfileBtn" class="edit-btn">
+                    Editar Perfil
+                </button>
+
+                @if(auth()->user()->rol === 'cliente')
+                    <form action="/convertirse-trabajador" method="POST">
+                        @csrf
+
+                        <button type="submit" class="edit-btn">
+                            Convertirme en trabajador
+                        </button>
+                    </form>
+                @endif
+
+            </div>
 
         </div>
+        @if($user->rol === 'trabajador')
+
+            <span>
+                Perfil de trabajador activo
+            </span>
+
+        @endif
 
         <p class="profile-subtitle">
             Completa tu información para que los clientes puedan conocerte mejor.
@@ -28,10 +49,10 @@
         @method('patch')
 
         <!-- Nombre -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full profile-input" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" disabled />
+        <div class="mt-4">
+            <x-input-label for="name" :value="__('Nombre')" />
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full profile-input" :value="old('name', $user->name)" required autofocus autocomplete="name" disabled />
+            <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
         <!-- Apellido -->
         <div class="mt-4">
@@ -41,46 +62,51 @@
                 :value="old('apellido', $user->apellido)" disabled />
 
         </div>
-        <!-- Teléfono -->
-        <div class="mt-4">
-            <x-input-label for="telefono" value="Teléfono" />
+        @if ($user->rol == 'trabajador')
+            <!-- Teléfono -->
+            <div class="mt-4">
+                <x-input-label for="telefono" value="Teléfono" />
 
-            <x-text-input id="telefono" name="telefono" type="text" class="mt-1 block w-full profile-input"
-                :value="old('telefono', $user->telefono)" disabled />
-        </div>
-        <!-- Distrito -->
-        <div class="mt-4">
-            <x-input-label for="distrito" value="Distrito" />
+                <x-text-input id="telefono" name="telefono" type="text" class="mt-1 block w-full profile-input"
+                    :value="old('telefono', $user->telefono)" disabled />
+            </div>
+            <!-- Distrito -->
+            <div class="mt-4">
+                <x-input-label for="distrito" value="Distrito" />
 
-            <x-text-input id="distrito" name="distrito" type="text" class="mt-1 block w-full profile-input"
-                :value="old('distrito', $user->distrito)" disabled />
-        </div>
-        <!-- Especialidad -->
-        <div class="mt-4">
-            <x-input-label for="especialidad" value="Especialidad" />
+                <x-text-input id="distrito" name="distrito" type="text" class="mt-1 block w-full profile-input"
+                    :value="old('distrito', $user->distrito)" disabled />
+            </div>
+            <!-- Especialidad -->
+            <div class="mt-4">
+                <x-input-label for="especialidad" value="Especialidad" />
 
-            <x-text-input id="especialidad" name="especialidad" type="text" class="mt-1 block w-full profile-input"
-                :value="old('especialidad', $user->especialidad)"disabled />
-        </div>
-        <!-- Experiencia -->
-        <div class="mt-4">
-            <x-input-label for="experiencia" value="Experiencia" />
+                <x-text-input id="especialidad" name="especialidad" type="text" class="mt-1 block w-full profile-input"
+                    :value="old('especialidad', $user->especialidad)" disabled />
+            </div>
+            <!-- Experiencia -->
+            <div class="mt-4">
+                <x-input-label for="experiencia" value="Experiencia" />
 
-            <x-text-input id="experiencia" name="experiencia" type="text" class="mt-1 block w-full profile-input"
-                :value="old('experiencia', $user->experiencia)" disabled />
-        </div>
-        <!-- Descripción -->
-        <div class="mt-4">
-            <x-input-label for="descripcion" value="Descripción" />
+                <x-text-input id="experiencia" name="experiencia" type="text" class="mt-1 block w-full profile-input"
+                    :value="old('experiencia', $user->experiencia)" disabled />
+            </div>
+            <!-- Descripción -->
+            <div class="mt-4">
+                <x-input-label for="descripcion" value="Descripción" />
 
-            <textarea id="descripcion" name="descripcion" rows="4"
-                class="mt-1 block w-full border-gray-300 rounded-md profile-input"
-                disabled>{{ old('descripcion', $user->descripcion) }}</textarea>
-        </div>
+                <textarea id="descripcion" name="descripcion" rows="4"
+                    class="mt-1 block w-full border-gray-300 rounded-md profile-input"
+                    disabled>{{ old('descripcion', $user->descripcion) }}</textarea>
+            </div>
+
+        @endif
+
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" disabled />
+            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full profile-input"
+                :value="old('email', $user->email)" required autocomplete="username" disabled />
+            <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
                 <div>
@@ -100,14 +126,6 @@
                     @endif
                 </div>
             @endif
-        </div>
-
-        <div class="profile-actions">
-
-            <button type="button" id="editProfileBtn" class="edit-btn">
-                Editar Perfil
-            </button>
-
         </div>
 
         <div class="flex items-center gap-4" id="saveContainer" style="display:none;">
