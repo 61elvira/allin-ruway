@@ -1,0 +1,374 @@
+/* Si ya tienes estas variables definidas en tu archivo base, no las repitas aquí */
+:root {
+    --ar-beige: #F1EAD9;
+    --ar-beige-alt: #E4D9C2;
+    --ar-negro: #2B2420;
+    --ar-terracota: #C1683C;
+    --ar-ocre: #C99A3E;
+    --ar-borde: #D8C9AC;
+}
+
+.dashboard-page {
+    background: var(--ar-beige);
+    min-height: 100vh;
+    font-family: 'Work Sans', sans-serif;
+    color: var(--ar-negro);
+}
+
+/* Topbar */
+.dashboard-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.dashboard-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+}
+
+.logo-allin { color: var(--ar-negro); }
+.logo-ruway { color: var(--ar-terracota); }
+
+.btn-convertirte {
+    background: var(--ar-terracota);
+    color: var(--ar-beige);
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.6rem 1.25rem;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.btn-convertirte:hover {
+    background: var(--ar-negro);
+}
+
+/* Franja greca escalonada */
+.greca-strip {
+    height: 14px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='14' viewBox='0 0 20 14'%3E%3Cpath d='M0 14 L0 7 L5 7 L5 0 L10 0 L10 7 L15 7 L15 14 Z' fill='%23C1683C'/%3E%3C/svg%3E"),
+                      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='14' viewBox='0 0 20 14'%3E%3Cpath d='M5 14 L5 7 L10 7 L10 0 L15 0 L15 7 L20 7 L20 14 Z' fill='%23C99A3E'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-size: 20px 14px;
+}
+
+/* Wrapper general */
+.dashboard-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 4rem;
+}
+
+/* Saludo */
+.dashboard-saludo {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.saludo-nombre {
+    font-family: 'Fraunces', serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+.saludo-divisor {
+    color: var(--ar-ocre);
+}
+
+.saludo-pregunta {
+    font-size: 1.1rem;
+    color: var(--ar-negro);
+    opacity: 0.75;
+}
+
+/* Buscador */
+.dashboard-buscador {
+    margin-bottom: 3rem;
+}
+
+.buscador-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 1.5px solid var(--ar-borde);
+    border-radius: 999px;
+    padding: 0 0.75rem;
+    max-width: 560px;
+}
+
+.icono-lupa {
+    display: flex;
+    color: var(--ar-terracota);
+    margin-right: 0.5rem;
+}
+
+.buscador-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0.85rem 0;
+    font-size: 0.95rem;
+    color: var(--ar-negro);
+    font-family: 'Work Sans', sans-serif;
+}
+
+.buscador-toggle {
+    border: none;
+    background: transparent;
+    color: var(--ar-negro);
+    cursor: pointer;
+    display: flex;
+    padding: 0.4rem;
+    transition: transform 0.2s ease;
+}
+
+.buscador-toggle[aria-expanded="true"] {
+    transform: rotate(180deg);
+}
+
+.buscador-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid var(--ar-borde);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(43, 36, 32, 0.12);
+    overflow: hidden;
+    display: none;
+    z-index: 20;
+}
+
+.buscador-dropdown.is-open {
+    display: block;
+}
+
+.buscador-opcion {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    border: none;
+    background: transparent;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    color: var(--ar-negro);
+    text-align: left;
+    cursor: pointer;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.buscador-opcion:hover {
+    background: var(--ar-beige-alt);
+}
+
+.opcion-icono {
+    display: flex;
+    color: var(--ar-terracota);
+}
+.opcion-icono--gasfiteria { color: #4B7A9E; }
+.opcion-icono--carpinteria { color: #7A5C3E; }
+
+/* Destacados */
+.destacados-titulo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 1.5rem;
+}
+
+.destacados-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+}
+
+.card-categoria {
+    background: var(--ar-beige-alt);
+    border: 1px solid var(--ar-borde);
+    border-radius: 14px;
+    padding: 1.5rem;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.card-categoria:hover,
+.card-categoria:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(43, 36, 32, 0.15);
+    outline: none;
+}
+
+.card-icono {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.card-icono--electricidad { background: var(--ar-terracota); }
+.card-icono--gasfiteria { background: #4B7A9E; }
+.card-icono--carpinteria { background: #7A5C3E; }
+
+.card-categoria h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    margin: 0 0 0.4rem;
+}
+
+.card-categoria p {
+    font-size: 0.85rem;
+    opacity: 0.75;
+    margin: 0;
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(43, 36, 32, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 50;
+    padding: 1rem;
+}
+
+.modal-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-contenido {
+    background: var(--ar-beige);
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 480px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.modal-cerrar {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: none;
+    background: var(--ar-beige-alt);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--ar-negro);
+}
+
+.modal-titulo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    margin: 0 0 1.25rem;
+}
+
+.modal-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.trabajador-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 10px;
+    transition: background 0.15s ease;
+}
+
+.trabajador-item:hover {
+    background: var(--ar-beige-alt);
+}
+
+.trabajador-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--ar-terracota);
+    color: #fff;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.trabajador-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.trabajador-nombre {
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.trabajador-distrito {
+    font-size: 0.8rem;
+    opacity: 0.65;
+}
+
+.trabajador-calificacion {
+    font-size: 0.85rem;
+    color: var(--ar-ocre);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+    .dashboard-topbar { padding: 1.25rem 1.25rem; }
+    .dashboard-wrapper { padding: 1.5rem 1.25rem 3rem; }
+    .destacados-grid { grid-template-columns: 1fr; }
+}
+
+.card-icono img,
+.opcion-icono img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.card-icono,
+.opcion-icono {
+    overflow: hidden;
+}
