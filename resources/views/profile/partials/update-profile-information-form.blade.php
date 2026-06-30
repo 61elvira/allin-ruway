@@ -71,26 +71,47 @@
                     :value="old('telefono', $user->telefono)" disabled />
             </div>
             <!-- Distrito -->
-            <div class="mt-4">
-                <x-input-label for="distrito" value="Distrito" />
+            <select id="distrito" name="distrito" class="mt-1 block w-full profile-input" disabled>
 
-                <x-text-input id="distrito" name="distrito" type="text" class="mt-1 block w-full profile-input"
-                    :value="old('distrito', $user->distrito)" disabled />
-            </div>
+                <option value="">Seleccione un distrito</option>
+
+                @foreach(config('allinruway.distritos') as $distrito)
+
+                    <option value="{{ $distrito }}" {{ old('distrito', $user->distrito) == $distrito ? 'selected' : '' }}>
+                        {{ $distrito }}
+                    </option>
+
+                @endforeach
+
+            </select>
             <!-- Especialidad -->
-            <div class="mt-4">
-                <x-input-label for="especialidad" value="Especialidad" />
+            <select id="especialidad" name="especialidad" class="mt-1 block w-full profile-input" disabled>
 
-                <x-text-input id="especialidad" name="especialidad" type="text" class="mt-1 block w-full profile-input"
-                    :value="old('especialidad', $user->especialidad)" disabled />
-            </div>
+                <option value="">Seleccione una especialidad</option>
+
+                @foreach($servicios as $servicio)
+
+                    <option value="{{ $servicio->nombre }}" {{ old('especialidad', $user->especialidad) == $servicio->nombre ? 'selected' : '' }}>
+                        {{ $servicio->nombre }}
+                    </option>
+
+                @endforeach
+
+            </select>
             <!-- Experiencia -->
-            <div class="mt-4">
-                <x-input-label for="experiencia" value="Experiencia" />
+            <select id="experiencia" name="experiencia" class="mt-1 block w-full profile-input" disabled>
 
-                <x-text-input id="experiencia" name="experiencia" type="text" class="mt-1 block w-full profile-input"
-                    :value="old('experiencia', $user->experiencia)" disabled />
-            </div>
+                <option value="">Seleccione experiencia</option>
+
+                @foreach(config('allinruway.experiencias') as $valor => $texto)
+
+                    <option value="{{ $valor }}" {{ old('experiencia', $user->experiencia) == $valor ? 'selected' : '' }}>
+                        {{ $texto }}
+                    </option>
+
+                @endforeach
+
+            </select>
             <!-- Descripción -->
             <div class="mt-4">
                 <x-input-label for="descripcion" value="Descripción" />

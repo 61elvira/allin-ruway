@@ -202,137 +202,50 @@
 <?php endif; ?>
             </div>
             <!-- Distrito -->
-            <div class="mt-4">
-                <?php if (isset($component)) { $__componentOriginale3da9d84bb64e4bc2eeebaafabfb2581 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginale3da9d84bb64e4bc2eeebaafabfb2581 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.input-label','data' => ['for' => 'distrito','value' => 'Distrito']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('input-label'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['for' => 'distrito','value' => 'Distrito']); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginale3da9d84bb64e4bc2eeebaafabfb2581)): ?>
-<?php $attributes = $__attributesOriginale3da9d84bb64e4bc2eeebaafabfb2581; ?>
-<?php unset($__attributesOriginale3da9d84bb64e4bc2eeebaafabfb2581); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginale3da9d84bb64e4bc2eeebaafabfb2581)): ?>
-<?php $component = $__componentOriginale3da9d84bb64e4bc2eeebaafabfb2581; ?>
-<?php unset($__componentOriginale3da9d84bb64e4bc2eeebaafabfb2581); ?>
-<?php endif; ?>
+            <select id="distrito" name="distrito" class="mt-1 block w-full profile-input" disabled>
 
-                <?php if (isset($component)) { $__componentOriginal18c21970322f9e5c938bc954620c12bb = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal18c21970322f9e5c938bc954620c12bb = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.text-input','data' => ['id' => 'distrito','name' => 'distrito','type' => 'text','class' => 'mt-1 block w-full profile-input','value' => old('distrito', $user->distrito),'disabled' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('text-input'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['id' => 'distrito','name' => 'distrito','type' => 'text','class' => 'mt-1 block w-full profile-input','value' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(old('distrito', $user->distrito)),'disabled' => true]); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal18c21970322f9e5c938bc954620c12bb)): ?>
-<?php $attributes = $__attributesOriginal18c21970322f9e5c938bc954620c12bb; ?>
-<?php unset($__attributesOriginal18c21970322f9e5c938bc954620c12bb); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal18c21970322f9e5c938bc954620c12bb)): ?>
-<?php $component = $__componentOriginal18c21970322f9e5c938bc954620c12bb; ?>
-<?php unset($__componentOriginal18c21970322f9e5c938bc954620c12bb); ?>
-<?php endif; ?>
-            </div>
+                <option value="">Seleccione un distrito</option>
+
+                <?php $__currentLoopData = config('allinruway.distritos'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $distrito): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+                    <option value="<?php echo e($distrito); ?>" <?php echo e(old('distrito', $user->distrito) == $distrito ? 'selected' : ''); ?>>
+                        <?php echo e($distrito); ?>
+
+                    </option>
+
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+            </select>
             <!-- Especialidad -->
-            <div class="mt-4">
-                <?php if (isset($component)) { $__componentOriginale3da9d84bb64e4bc2eeebaafabfb2581 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginale3da9d84bb64e4bc2eeebaafabfb2581 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.input-label','data' => ['for' => 'especialidad','value' => 'Especialidad']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('input-label'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['for' => 'especialidad','value' => 'Especialidad']); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginale3da9d84bb64e4bc2eeebaafabfb2581)): ?>
-<?php $attributes = $__attributesOriginale3da9d84bb64e4bc2eeebaafabfb2581; ?>
-<?php unset($__attributesOriginale3da9d84bb64e4bc2eeebaafabfb2581); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginale3da9d84bb64e4bc2eeebaafabfb2581)): ?>
-<?php $component = $__componentOriginale3da9d84bb64e4bc2eeebaafabfb2581; ?>
-<?php unset($__componentOriginale3da9d84bb64e4bc2eeebaafabfb2581); ?>
-<?php endif; ?>
+            <select id="especialidad" name="especialidad" class="mt-1 block w-full profile-input" disabled>
 
-                <?php if (isset($component)) { $__componentOriginal18c21970322f9e5c938bc954620c12bb = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal18c21970322f9e5c938bc954620c12bb = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.text-input','data' => ['id' => 'especialidad','name' => 'especialidad','type' => 'text','class' => 'mt-1 block w-full profile-input','value' => old('especialidad', $user->especialidad),'disabled' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('text-input'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['id' => 'especialidad','name' => 'especialidad','type' => 'text','class' => 'mt-1 block w-full profile-input','value' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(old('especialidad', $user->especialidad)),'disabled' => true]); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal18c21970322f9e5c938bc954620c12bb)): ?>
-<?php $attributes = $__attributesOriginal18c21970322f9e5c938bc954620c12bb; ?>
-<?php unset($__attributesOriginal18c21970322f9e5c938bc954620c12bb); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal18c21970322f9e5c938bc954620c12bb)): ?>
-<?php $component = $__componentOriginal18c21970322f9e5c938bc954620c12bb; ?>
-<?php unset($__componentOriginal18c21970322f9e5c938bc954620c12bb); ?>
-<?php endif; ?>
-            </div>
+                <option value="">Seleccione una especialidad</option>
+
+                <?php $__currentLoopData = $servicios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $servicio): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+                    <option value="<?php echo e($servicio->nombre); ?>" <?php echo e(old('especialidad', $user->especialidad) == $servicio->nombre ? 'selected' : ''); ?>>
+                        <?php echo e($servicio->nombre); ?>
+
+                    </option>
+
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+            </select>
             <!-- Experiencia -->
-            <div class="mt-4">
-                <?php if (isset($component)) { $__componentOriginale3da9d84bb64e4bc2eeebaafabfb2581 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginale3da9d84bb64e4bc2eeebaafabfb2581 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.input-label','data' => ['for' => 'experiencia','value' => 'Experiencia']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('input-label'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['for' => 'experiencia','value' => 'Experiencia']); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginale3da9d84bb64e4bc2eeebaafabfb2581)): ?>
-<?php $attributes = $__attributesOriginale3da9d84bb64e4bc2eeebaafabfb2581; ?>
-<?php unset($__attributesOriginale3da9d84bb64e4bc2eeebaafabfb2581); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginale3da9d84bb64e4bc2eeebaafabfb2581)): ?>
-<?php $component = $__componentOriginale3da9d84bb64e4bc2eeebaafabfb2581; ?>
-<?php unset($__componentOriginale3da9d84bb64e4bc2eeebaafabfb2581); ?>
-<?php endif; ?>
+            <select id="experiencia" name="experiencia" class="mt-1 block w-full profile-input" disabled>
 
-                <?php if (isset($component)) { $__componentOriginal18c21970322f9e5c938bc954620c12bb = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal18c21970322f9e5c938bc954620c12bb = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.text-input','data' => ['id' => 'experiencia','name' => 'experiencia','type' => 'text','class' => 'mt-1 block w-full profile-input','value' => old('experiencia', $user->experiencia),'disabled' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('text-input'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['id' => 'experiencia','name' => 'experiencia','type' => 'text','class' => 'mt-1 block w-full profile-input','value' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(old('experiencia', $user->experiencia)),'disabled' => true]); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal18c21970322f9e5c938bc954620c12bb)): ?>
-<?php $attributes = $__attributesOriginal18c21970322f9e5c938bc954620c12bb; ?>
-<?php unset($__attributesOriginal18c21970322f9e5c938bc954620c12bb); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal18c21970322f9e5c938bc954620c12bb)): ?>
-<?php $component = $__componentOriginal18c21970322f9e5c938bc954620c12bb; ?>
-<?php unset($__componentOriginal18c21970322f9e5c938bc954620c12bb); ?>
-<?php endif; ?>
-            </div>
+                <option value="">Seleccione experiencia</option>
+
+                <?php $__currentLoopData = config('allinruway.experiencias'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $valor => $texto): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+                    <option value="<?php echo e($valor); ?>" <?php echo e(old('experiencia', $user->experiencia) == $valor ? 'selected' : ''); ?>>
+                        <?php echo e($texto); ?>
+
+                    </option>
+
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+            </select>
             <!-- Descripción -->
             <div class="mt-4">
                 <?php if (isset($component)) { $__componentOriginale3da9d84bb64e4bc2eeebaafabfb2581 = $component; } ?>
