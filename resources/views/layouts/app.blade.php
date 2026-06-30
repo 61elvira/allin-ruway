@@ -37,12 +37,21 @@
                             class="{{ request()->routeIs('contrataciones.index') ? 'active-menu' : '' }}">
                             Solicitudes
                         </a>
-                        <a href="#">Mis Trabajos</a>
-                        <a href="#">Historial</a>
+                        <a href="{{ route('contrataciones.misTrabajos') }}"
+                            class="{{ request()->routeIs('contrataciones.misTrabajos') ? 'active-menu' : '' }}">
+                            Mis Trabajos
+                        </a>
+                        <a href="{{ route('contrataciones.historial') }}"
+                            class="{{ request()->routeIs('contrataciones.historial') ? 'active-menu' : '' }}">
+                            Historial
+                        </a>
                     @endif
 
                     @if(auth()->user()->rol == 'cliente')
-                        <a href="#">Mis Contrataciones</a>
+                        <a href="{{ route('contrataciones.misContrataciones') }}"
+                            class="{{ request()->routeIs('contrataciones.misContrataciones') ? 'active-menu' : '' }}">
+                            Mis Contrataciones
+                        </a>
                     @endif
                 </nav>
 

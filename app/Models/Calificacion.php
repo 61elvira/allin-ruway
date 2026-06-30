@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Calificacion extends Model
 {
+    protected $table = 'calificaciones';
     protected $fillable = [
         'contratacion_id',
         'cliente_id',
@@ -14,9 +15,9 @@ class Calificacion extends Model
         'comentario',
     ];
 
-    public function trabajador()
+    public function contratacion()
     {
-        return $this->belongsTo(User::class, 'trabajador_id');
+        return $this->belongsTo(Contratacion::class);
     }
 
     public function cliente()
@@ -24,8 +25,8 @@ class Calificacion extends Model
         return $this->belongsTo(User::class, 'cliente_id');
     }
 
-    public function contratacion()
+    public function trabajador()
     {
-        return $this->belongsTo(Contratacion::class);
+        return $this->belongsTo(User::class, 'trabajador_id');
     }
 }

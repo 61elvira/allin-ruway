@@ -25,6 +25,54 @@ class ContratacionController extends Controller
             compact('contrataciones')
         );
     }
+    public function misTrabajos()
+    {
+        $contrataciones = Contratacion::with([
+            'cliente',
+            'servicio'
+        ])
+            ->where('trabajador_id', auth()->id())
+            ->where('estado', 'aceptado')
+            ->latest()
+            ->get();
+
+        return view(
+            'contrataciones.mis-trabajos',
+            compact('contrataciones')
+        );
+    }
+    public function historial()
+    {
+        $contrataciones = Contratacion::with([
+            'cliente',
+            'servicio'
+        ])
+            ->where('trabajador_id', auth()->id())
+            ->where('estado', 'finalizado')
+            ->latest()
+            ->get();
+
+        return view(
+            'contrataciones.historial',
+            compact('contrataciones')
+        );
+    }
+    public function misContrataciones()
+    {
+        $contrataciones = Contratacion::with([
+            'trabajador',
+            'servicio',
+            'calificacion'
+        ])
+            ->where('cliente_id', auth()->id())
+            ->latest()
+            ->get();
+
+        return view(
+            'contrataciones.mis-contrataciones',
+            compact('contrataciones')
+        );
+    }
 
     public function create(User $trabajador)
     {
@@ -62,5 +110,17 @@ class ContratacionController extends Controller
 
         return back()->with('success', 'Solicitud rechazada.');
     }
+    public function finalizar(Contratacion $contratacion)
+    {
+        $contratacion->estado = 'finalizado';
 
+        $contratacion->save();
+
+        return redirect()
+            ->route('contrataciones.misTrabajos')
+            ->with(
+                'success',
+                'Trabajo finalizado correctamente.'
+            );
+    }
 }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TrabajadorController;
 use App\Http\Controllers\ContratacionController;
+use App\Http\Controllers\CalificacionController;
 
 Route::get('/', function () {
     return view('casa');
@@ -75,3 +76,33 @@ Route::patch(
     '/contrataciones/{contratacion}/rechazar',
     [ContratacionController::class, 'rechazar']
 )->name('contrataciones.rechazar');
+
+Route::get(
+    '/mis-trabajos',
+    [ContratacionController::class, 'misTrabajos']
+)->middleware('auth')
+    ->name('contrataciones.misTrabajos');
+Route::patch(
+    '/contrataciones/{contratacion}/finalizar',
+    [ContratacionController::class, 'finalizar']
+)->name('contrataciones.finalizar');
+Route::get(
+    '/historial',
+    [ContratacionController::class, 'historial']
+)->middleware('auth')
+    ->name('contrataciones.historial');
+Route::get(
+    '/mis-contrataciones',
+    [ContratacionController::class, 'misContrataciones']
+)->middleware('auth')
+    ->name('contrataciones.misContrataciones');
+
+Route::get(
+    '/calificaciones/{contratacion}',
+    [CalificacionController::class, 'create']
+)->name('calificaciones.create');
+
+Route::post(
+    '/calificaciones',
+    [CalificacionController::class, 'store']
+)->name('calificaciones.store');

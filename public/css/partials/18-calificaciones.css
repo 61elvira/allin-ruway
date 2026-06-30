@@ -1,0 +1,99 @@
+/*==========================================
+            CALIFICACIONES
+==========================================*/
+.rating-container {
+    display: flex;
+    justify-content: center;
+    padding: 80px;
+}
+.rating-card {
+    width: 700px;
+    background: white;
+    padding: 45px;
+    border-radius: 20px;
+    box-shadow: 0 10px 35px rgba(0,0,0,.08);
+}
+.rating-card h1 {
+    font-size: 2rem;
+    color: #4A2C2A;
+    margin-bottom: 10px;
+}
+.rating-card h2 {
+    color: #C44569;
+    margin-bottom: 30px;
+}
+.stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+.stars input {
+    display: none;
+}
+.stars label {
+    font-size: 45px;
+    color: #ccc;
+    cursor: pointer;
+    transition: .3s;
+}
+.stars input:checked ~ label {
+    color: #FFD700;
+}
+.stars label:hover,
+.stars label:hover ~ label {
+    color: #FFD700;
+}
+.rating-card textarea {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 18px;
+    resize: none;
+    margin-bottom: 25px;
+}
+.rating-btn {
+    width: 100%;
+    background: #C44569;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: .3s;
+}
+.rating-btn:hover {
+    background: #A53759;
+}
+/*==========================================
+        CALIFICACIONES DEL PERFIL
+==========================================*/
+.worker-rating {
+    margin: 20px 0;
+    font-size: 1.1rem;
+    color: #C44569;
+    font-weight: bold;
+}
+.worker-rating span {
+    color: #666;
+    font-weight: normal;
+}
+.worker-reviews {
+    margin-top: 40px;
+}
+.worker-reviews h3 {
+    margin-bottom: 20px;
+    color: #4A2C2A;
+}
+.review-card {
+    background: #fafafa;
+    border-left: 5px solid #C44569;
+    padding: 18px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+.review-card strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #C44569;
+}

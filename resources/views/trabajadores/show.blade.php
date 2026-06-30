@@ -36,7 +36,26 @@
                         Servicios que realiza
                     </h2>
                     <div class="services-list">
-                        <span>{{ $trabajador->especialidad }}</span>
+                        <div class="worker-rating">
+                            @if($totalResenas > 0)
+                                ⭐ {{ $promedio }}/5 <span>({{ $totalResenas }} reseñas)</span>
+                            @else
+                                <span>Sin calificaciones todavía</span>
+                            @endif
+                        </div>
+                        <div class="worker-reviews">
+                            <h3>Opiniones de clientes</h3>
+                            @forelse($trabajador->calificaciones as $calificacion)
+                                <div class="review-card">
+                                    <strong>⭐ {{ $calificacion->puntuacion }}/5</strong>
+                                    <p>{{ $calificacion->comentario }}</p>
+                                </div>
+                            @empty
+                                <p>Este trabajador aún no tiene comentarios.</p>
+                            @endforelse
+                        </div>
+
+
                     </div>
                 </div>
             </div>

@@ -62,4 +62,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Calificacion::class, 'cliente_id');
     }
+    public function calificaciones()
+    {
+        return $this->hasMany(
+            Calificacion::class,
+            'trabajador_id'
+        );
+    }
 }

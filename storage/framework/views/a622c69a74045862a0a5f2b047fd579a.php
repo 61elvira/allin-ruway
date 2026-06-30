@@ -37,12 +37,21 @@
                             class="<?php echo e(request()->routeIs('contrataciones.index') ? 'active-menu' : ''); ?>">
                             Solicitudes
                         </a>
-                        <a href="#">Mis Trabajos</a>
-                        <a href="#">Historial</a>
+                        <a href="<?php echo e(route('contrataciones.misTrabajos')); ?>"
+                            class="<?php echo e(request()->routeIs('contrataciones.misTrabajos') ? 'active-menu' : ''); ?>">
+                            Mis Trabajos
+                        </a>
+                        <a href="<?php echo e(route('contrataciones.historial')); ?>"
+                            class="<?php echo e(request()->routeIs('contrataciones.historial') ? 'active-menu' : ''); ?>">
+                            Historial
+                        </a>
                     <?php endif; ?>
 
                     <?php if(auth()->user()->rol == 'cliente'): ?>
-                        <a href="#">Mis Contrataciones</a>
+                        <a href="<?php echo e(route('contrataciones.misContrataciones')); ?>"
+                            class="<?php echo e(request()->routeIs('contrataciones.misContrataciones') ? 'active-menu' : ''); ?>">
+                            Mis Contrataciones
+                        </a>
                     <?php endif; ?>
                 </nav>
 
