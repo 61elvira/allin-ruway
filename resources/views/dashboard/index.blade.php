@@ -3,60 +3,74 @@
         <div class="hero-content">
             <h1>ALLIN RUWAY</h1>
             <p>Encuentra trabajadores confiables para cualquier proyecto.</p>
-            <form class="hero-search">
-                <input type="text" placeholder="¿Qué servicio buscas?">
+            <form action="{{ route('dashboard') }}" method="get" class="hero-search">
+                <input type="text" name="buscar" placeholder="¿Qué servicio buscas?" value="{{ request('buscar') }}">
                 <button type="submit">Buscar</button>
             </form>
         </div>
     </section>
 
-    <section class="categories-section">
+    @if (!request()->filled('buscar'))
+        <section class="categories-section">
 
-    <h2>Categorías disponibles</h2>
+        <h2>Categorías disponibles</h2>
 
-    <div class="categories-grid">
+        <div class="categories-grid">
 
-        @foreach($servicios as $servicio)
+            @foreach($servicios as $servicio)
 
-            <a href="{{ route('trabajadores.index', ['servicio' => $servicio->id]) }}"class="category-card">
+                <a href="{{ route('trabajadores.index', ['servicio' => $servicio->id]) }}"class="category-card">
 
-                <div class="category-icon">
+                    <div class="category-icon">
 
-                    @switch($servicio->nombre)
+                        @switch($servicio->nombre)
 
-                        @case('Electricista')
-                            ⚡
-                            @break
+                            @case('Electricista')
+                                ⚡
+                                @break
 
-                        @case('Carpintero')
-                            🪚
-                            @break
+                            @case('Carpintero')
+                                🪚
+                                @break
 
-                        @case('Gasfitero')
-                            🚰
-                            @break
+                            @case('Gasfitero')
+                                🚰
+                                @break
 
-                        @default
-                            🛠️
+                            @default
+                                🛠️
 
-                    @endswitch
+                        @endswitch
 
-                </div>
+                    </div>
 
-                <h3>{{ $servicio->nombre }}</h3>
+                    <h3>{{ $servicio->nombre }}</h3>
 
-                <p>{{ $servicio->descripcion }}</p>
+                    <p>{{ $servicio->descripcion }}</p>
 
-            </a>
+                </a>
 
-        @endforeach
+            @endforeach
 
-    </div>
+        </div>
 
-</section>
+        </section>
+    @endif
 
     <section class="workers">
-        <h3>Trabajadores destacados</h3>
+        @if(request()->filled('buscar'))
+
+        <h3>
+            Se encontraron {{ $trabajadores->total() }}
+            resultado(s) para "{{ request('buscar') }}"
+        </h3>
+
+        @else
+
+        <h3>
+            Trabajadores destacados
+        </h3>
+        @endif
         <div class="workers-grid">
             @forelse($trabajadores as $trabajador)
                 <div class="worker-card">
@@ -77,5 +91,21 @@
                 <p>No hay trabajadores registrados todavía.</p>
             @endforelse
         </div>
+        <div class="pagination-container">
+
+            {{ $trabajadores->links() }}
+
+        </div>
     </section>
+    @if(request()->filled('buscar'))
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.workers').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+    @endif
 </x-app-layout>

@@ -12,60 +12,75 @@
         <div class="hero-content">
             <h1>ALLIN RUWAY</h1>
             <p>Encuentra trabajadores confiables para cualquier proyecto.</p>
-            <form class="hero-search">
-                <input type="text" placeholder="¿Qué servicio buscas?">
+            <form action="<?php echo e(route('dashboard')); ?>" method="get" class="hero-search">
+                <input type="text" name="buscar" placeholder="¿Qué servicio buscas?" value="<?php echo e(request('buscar')); ?>">
                 <button type="submit">Buscar</button>
             </form>
         </div>
     </section>
 
-    <section class="categories-section">
+    <?php if(!request()->filled('buscar')): ?>
+        <section class="categories-section">
 
-    <h2>Categorías disponibles</h2>
+        <h2>Categorías disponibles</h2>
 
-    <div class="categories-grid">
+        <div class="categories-grid">
 
-        <?php $__currentLoopData = $servicios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $servicio): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php $__currentLoopData = $servicios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $servicio): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-            <a href="<?php echo e(route('trabajadores.index', ['servicio' => $servicio->id])); ?>"class="category-card">
+                <a href="<?php echo e(route('trabajadores.index', ['servicio' => $servicio->id])); ?>"class="category-card">
 
-                <div class="category-icon">
+                    <div class="category-icon">
 
-                    <?php switch($servicio->nombre):
+                        <?php switch($servicio->nombre):
 
-                        case ('Electricista'): ?>
-                            ⚡
-                            <?php break; ?>
+                            case ('Electricista'): ?>
+                                ⚡
+                                <?php break; ?>
 
-                        <?php case ('Carpintero'): ?>
-                            🪚
-                            <?php break; ?>
+                            <?php case ('Carpintero'): ?>
+                                🪚
+                                <?php break; ?>
 
-                        <?php case ('Gasfitero'): ?>
-                            🚰
-                            <?php break; ?>
+                            <?php case ('Gasfitero'): ?>
+                                🚰
+                                <?php break; ?>
 
-                        <?php default: ?>
-                            🛠️
+                            <?php default: ?>
+                                🛠️
 
-                    <?php endswitch; ?>
+                        <?php endswitch; ?>
 
-                </div>
+                    </div>
 
-                <h3><?php echo e($servicio->nombre); ?></h3>
+                    <h3><?php echo e($servicio->nombre); ?></h3>
 
-                <p><?php echo e($servicio->descripcion); ?></p>
+                    <p><?php echo e($servicio->descripcion); ?></p>
 
-            </a>
+                </a>
 
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-    </div>
+        </div>
 
-</section>
+        </section>
+    <?php endif; ?>
 
     <section class="workers">
-        <h3>Trabajadores destacados</h3>
+        <?php if(request()->filled('buscar')): ?>
+
+        <h3>
+            Se encontraron <?php echo e($trabajadores->total()); ?>
+
+            resultado(s) para "<?php echo e(request('buscar')); ?>"
+        </h3>
+
+        <?php else: ?>
+
+        <h3>
+            Trabajadores destacados
+        </h3>
+        <?php endif; ?>
         <div class="workers-grid">
             <?php $__empty_1 = true; $__currentLoopData = $trabajadores; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $trabajador): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                 <div class="worker-card">
@@ -86,7 +101,24 @@
                 <p>No hay trabajadores registrados todavía.</p>
             <?php endif; ?>
         </div>
+        <div class="pagination-container">
+
+            <?php echo e($trabajadores->links()); ?>
+
+
+        </div>
     </section>
+    <?php if(request()->filled('buscar')): ?>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.workers').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+    <?php endif; ?>
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>

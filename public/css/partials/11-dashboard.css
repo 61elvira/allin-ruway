@@ -1,62 +1,166 @@
 .dashboard-hero{
-    min-height: 70vh;
+
+    min-height:70vh;
 
     display:flex;
     justify-content:center;
     align-items:center;
 
+    text-align:center;
+
     background:
     radial-gradient(
-        circle at center,
-        rgba(196,69,105,.35) 0%,
-        rgba(139,30,63,.25) 30%,
-        #1a1a1a 100%
+        circle at top,
+        rgba(217,107,43,.22) 0%,
+        rgba(123,28,28,.15) 35%,
+        var(--color-guinda-oscuro) 100%
     );
 
-    text-align:center;
+    position:relative;
+
+    overflow:hidden;
+
+}
+.dashboard-hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:700px;
+
+    height:700px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(255,255,255,.08) 0%,
+        transparent 70%
+    );
+
+    top:-250px;
+
+    right:-180px;
+
+}
+.dashboard-hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+
+    height:500px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(217,107,43,.12) 0%,
+        transparent 75%
+    );
+
+    bottom:-180px;
+
+    left:-150px;
+
 }
 
 .hero-content{
+
     max-width:700px;
+
+    position:relative;
+
+    z-index:2;
+
 }
 
 .hero-content h1{
+
     color:white;
-    font-size:4rem;
+
+    font-size:4.3rem;
+
     font-weight:800;
+
+    letter-spacing:2px;
+
     margin-bottom:20px;
+
+    text-shadow:0 6px 20px rgba(0,0,0,.35);
+
 }
 
 .hero-content p{
-    color:#e5e5e5;
-    font-size:1.2rem;
-    margin-bottom:30px;
+
+    color:#f2f2f2;
+
+    font-size:1.25rem;
+
+    line-height:1.7;
+
+    margin-bottom:35px;
+
 }
 
 .hero-search{
+
     display:flex;
-    gap:10px;
+
     justify-content:center;
+
+    gap:12px;
+
 }
 
 .hero-search input{
-    width:450px;
-    padding:15px;
+
+    width:470px;
+
+    padding:17px 22px;
 
     border:none;
-    border-radius:12px;
+
+    border-radius:15px;
+
+    background:white;
+
+    font-size:1rem;
+
+    box-shadow:
+    0 12px 25px rgba(0,0,0,.15);
+
 }
-
 .hero-search button{
-    padding:15px 25px;
+
+    padding:17px 30px;
 
     border:none;
-    border-radius:12px;
 
-    background:#C44569;
+    border-radius:15px;
+
+    background:var(--color-naranja);
+
     color:white;
 
+    font-weight:600;
+
     cursor:pointer;
+
+    transition:.35s;
+
+}
+.hero-search button:hover{
+
+    background:var(--color-rojo-vino);
+
+    transform:translateY(-2px);
+
 }
 /*==================================
     CATEGORÍAS
@@ -153,13 +257,22 @@
 
 }
 .workers {
-    padding: 80px 10%;
+    padding:90px 8%;
+
+    background:
+    linear-gradient(
+        180deg,
+        #f8f6f5 0%,
+        #f2efee 100%
+    );
 }
 
 .workers h3 {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 2rem;
+    text-align:center;
+    font-size:2.2rem;
+    color:var(--color-guinda-oscuro);
+    margin-bottom:60px;
+    font-weight:700;
 }
 
 .workers-grid {
@@ -172,65 +285,80 @@
 }
 
 .worker-card {
-    background: white;
-
-    border-radius: 20px;
-
-    padding: 25px;
-
-    text-align: center;
-
-    box-shadow: 0 10px 25px rgba(0,0,0,.08);
-
-    transition: .3s;
+    background:var(--color-blanco);
+    border-radius:22px;
+    padding:30px;
+    text-align:center;
+    border:1px solid #ececec;
+    box-shadow:
+    0 12px 25px rgba(0,0,0,.08);
+    transition:.35s;
 }
 
 .worker-card:hover {
-    transform: translateY(-5px);
+    transform:translateY(-10px);
+
+    box-shadow:
+    0 20px 40px rgba(123,28,28,.15);
+
+    border-color:var(--color-naranja);
 }
 
 .worker-avatar img {
-    width: 120px;
+    width:120px;
+    height:120px;
 
-    height: 120px;
+    border-radius:50%;
 
-    border-radius: 50%;
+    object-fit:cover;
 
-    object-fit: cover;
+    border:5px solid white;
 
-    margin-bottom: 15px;
+    box-shadow:
+    0 8px 18px rgba(0,0,0,.12);
+
+    margin-bottom:20px;
 }
 
 .worker-card h4 {
-    font-size: 1.2rem;
+    color:var(--color-guinda-oscuro);
 
-    margin-bottom: 10px;
+    font-size:1.35rem;
+
+    margin-bottom:12px;
 }
 
 .worker-card p {
-    color: #666;
+    color:#666;
 
-    margin-bottom: 8px;
+    margin-bottom:10px;
+
+    font-size:.98rem;
 }
 
 .worker-card a {
-    display: inline-block;
+    display:inline-block;
 
-    margin-top: 10px;
+    margin-top:18px;
 
-    padding: 10px 20px;
+    padding:12px 28px;
 
-    border-radius: 10px;
+    border-radius:14px;
 
-    text-decoration: none;
+    text-decoration:none;
 
-    background: #b44343;
+    background:var(--color-rojo-vino);
 
-    color: white;
+    color:white;
 
-    transition: .3s;
+    font-weight:600;
+
+    transition:.3s;
 }
 
 .worker-card a:hover {
-    background: #963535;
+    background:var(--color-naranja);
+
+    transform:scale(1.05);
+
 }

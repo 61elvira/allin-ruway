@@ -29,11 +29,11 @@ return [
 
     'experiencias' => [
 
-        'junior' => 'Junior (0 - 2 años)',
+        'principiante' => 'Principiante (0 - 2 años)',
 
         'intermedio' => 'Intermedio (3 - 5 años)',
 
-        'senior' => 'Senior (6 - 10 años)',
+        'experimentado' => 'Experimentado (6 - 10 años)',
 
         'experto' => 'Experto (+10 años)',
 
