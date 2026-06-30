@@ -14,6 +14,12 @@ class DashboardController extends Controller
 
         $query = User::where('rol', 'trabajador');
 
+        /*
+        |--------------------------------------------------------------------------
+        | BUSCADOR
+        |--------------------------------------------------------------------------
+        */
+
         if ($request->filled('buscar')) {
 
             $texto = $request->buscar;
@@ -22,16 +28,52 @@ class DashboardController extends Controller
 
                 $q->where('name', 'like', "%{$texto}%")
                     ->orWhere('apellido', 'like', "%{$texto}%")
-                    ->orWhere('especialidad', 'like', "%{$texto}%")
-                    ->orWhere('distrito', 'like', "%{$texto}%");
+                    ->orWhere('especialidad', 'like', "%{$texto}%");
 
             });
 
         }
 
+        /*
+        |--------------------------------------------------------------------------
+        | FILTRO ESPECIALIDAD
+        |--------------------------------------------------------------------------
+        */
+
+        if ($request->filled('especialidad')) {
+
+            $query->where('especialidad', $request->especialidad);
+
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | FILTRO DISTRITO
+        |--------------------------------------------------------------------------
+        */
+
+        if ($request->filled('distrito')) {
+
+            $query->where('distrito', $request->distrito);
+
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | FILTRO EXPERIENCIA
+        |--------------------------------------------------------------------------
+        */
+
+        if ($request->filled('experiencia')) {
+
+            $query->where('experiencia', $request->experiencia);
+
+        }
+
         $trabajadores = $query
             ->latest()
-            ->paginate(6);
+            ->paginate(6)
+            ->withQueryString();
 
         return view('dashboard.index', compact(
             'servicios',
