@@ -31,7 +31,7 @@
         </div>
     </section>
 
-    @if (!request()->filled('buscar'))
+    @if(!$filtrosActivos)
         <section class="categories-section">
             <h2>Categorías disponibles</h2>
             <div class="categories-grid">
@@ -54,7 +54,7 @@
     @endif
 
     <section class="workers">
-        @if(request()->filled('buscar'))
+        @if($filtrosActivos)
             <h3>Se encontraron {{ $trabajadores->total() }} resultado(s) para "{{ request('buscar') }}"</h3>
         @else
             <h3>Trabajadores destacados</h3>
@@ -85,16 +85,22 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
+
         const boton = document.getElementById('toggleFilters');
         const panel = document.getElementById('filtersPanel');
+
         boton.addEventListener('click', () => {
             panel.classList.toggle('active');
         });
+
+        @if($filtrosActivos)
+
+        document.querySelector('.workers').scrollIntoView({
+            behavior: 'smooth'
+        });
+
+        @endif
+
     });
-    @if(request()->filled('buscar'))
-    document.querySelector('.workers').scrollIntoView({
-        behavior:'smooth'
-    });
-    @endif
     </script>
 </x-app-layout>

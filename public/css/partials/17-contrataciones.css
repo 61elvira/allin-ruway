@@ -1,0 +1,61 @@
+.requests-container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+}
+.requests-title {
+    font-size: 2rem;
+    margin-bottom: 35px;
+    color: #5B1E2D;
+}
+.request-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+}
+.request-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.request-status {
+    background: #C44569;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: .85rem;
+}
+.request-body p {
+    margin: 10px 0;
+}
+.request-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+.accept-btn {
+    background: #2E8B57;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.reject-btn {
+    background: #B22222;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.success-message {
+    background: #d1fae5;
+    color: #065f46;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}

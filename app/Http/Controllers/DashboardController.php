@@ -70,6 +70,12 @@ class DashboardController extends Controller
 
         }
 
+        $filtrosActivos =
+            $request->filled('buscar') ||
+            $request->filled('especialidad') ||
+            $request->filled('distrito') ||
+            $request->filled('experiencia');
+
         $trabajadores = $query
             ->latest()
             ->paginate(6)
@@ -77,7 +83,8 @@ class DashboardController extends Controller
 
         return view('dashboard.index', compact(
             'servicios',
-            'trabajadores'
+            'trabajadores',
+            'filtrosActivos'
         ));
     }
 }

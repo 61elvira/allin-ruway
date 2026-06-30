@@ -13,27 +13,60 @@
 </head>
 
 <body class="font-sans antialiased">
-
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-
+    <div class="min-h-screen bg-gray-100">
         <?php echo $__env->make('layouts.dashboard-navigation', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+        <div class="dashboard-layout">
+            <button id="toggleSidebar" class="sidebar-toggle">➔</button>
+            <aside id="sidebar" class="dashboard-sidebar">
 
-        <?php if(isset($header)): ?>
-            <header class="bg-white dark:bg-gray-800 shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    <?php echo e($header); ?>
-
+                <div class="sidebar-logo">
+                    <h2>MENÚ</h2>
                 </div>
-            </header>
-        <?php endif; ?>
+                <nav>
+                    <a href="<?php echo e(route('dashboard')); ?>"
+                        class="<?php echo e(request()->routeIs('dashboard') ? 'active-menu' : ''); ?>">
+                        Inicio
+                    </a>
+                    <a href="<?php echo e(route('profile.edit')); ?>"
+                        class="<?php echo e(request()->routeIs('profile.edit') ? 'active-menu' : ''); ?>">
+                        Mi Perfil
+                    </a>
 
-        <main>
-            <?php echo e($slot); ?>
+                    <?php if(auth()->user()->rol == 'trabajador'): ?>
+                        <a href="<?php echo e(route('contrataciones.index')); ?>"
+                            class="<?php echo e(request()->routeIs('contrataciones.index') ? 'active-menu' : ''); ?>">
+                            Solicitudes
+                        </a>
+                        <a href="#">Mis Trabajos</a>
+                        <a href="#">Historial</a>
+                    <?php endif; ?>
 
-        </main>
+                    <?php if(auth()->user()->rol == 'cliente'): ?>
+                        <a href="#">Mis Contrataciones</a>
+                    <?php endif; ?>
+                </nav>
 
+            </aside>
+
+            <main class="dashboard-content">
+                <?php if(isset($header)): ?>
+                    <header class="dashboard-header"><?php echo e($header); ?></header>
+                <?php endif; ?>
+                <?php echo e($slot); ?>
+
+            </main>
+        </div>
     </div>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const boton = document.getElementById('toggleSidebar');
+            const sidebar = document.getElementById('sidebar');
+            boton.addEventListener('click', () => {
+                sidebar.classList.toggle('collapsed');
+            });
+        });
+    </script>
 </body>
+
 
 </html><?php /**PATH C:\xampp\htdocs\NewAllin\allin-ruway\resources\views/layouts/app.blade.php ENDPATH**/ ?>

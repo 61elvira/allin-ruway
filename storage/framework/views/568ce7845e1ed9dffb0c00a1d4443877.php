@@ -8,70 +8,49 @@
 <?php $attributes = $attributes->except(\App\View\Components\AppLayout::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
-
     <section class="worker-profile">
-
-        <div class="worker-profile-card">
-
-            <div class="worker-photo">
-
-                <?php if($trabajador->foto): ?>
-
-                    <img src="<?php echo e(asset('storage/' . $trabajador->foto)); ?>" alt="Foto">
-
-                <?php else: ?>
-
-                    <img src="https://ui-avatars.com/api/?name=<?php echo e(urlencode($trabajador->name)); ?>" alt="Foto">
-
-                <?php endif; ?>
-
-            </div>
-
-            <div class="worker-info">
-
-                <h1>
-                    <?php echo e($trabajador->name); ?>
-
-                    <?php echo e($trabajador->apellido); ?>
-
-                </h1>
-
-                <span class="worker-specialty">
-                    <?php echo e($trabajador->especialidad); ?>
-
-                </span>
-
-                <p>
-                    📍 <?php echo e($trabajador->distrito); ?>
-
-                </p>
-
-                <p>
-                    💼 <?php echo e($trabajador->experiencia); ?>
-
-                </p>
-
-                <div class="worker-description">
-
-                    <h3>Sobre mí</h3>
-
-                    <p>
-                        <?php echo e($trabajador->descripcion); ?>
-
-                    </p>
-
+        <div class="profile-container">
+            <!-- TARJETA IZQUIERDA -->
+            <aside class="profile-card">
+                <div class="worker-photo">
+                    <?php if($trabajador->foto): ?>
+                        <img src="<?php echo e(asset('storage/' . $trabajador->foto)); ?>" alt="Foto">
+                    <?php else: ?>
+                        <img src="https://ui-avatars.com/api/?name=<?php echo e(urlencode($trabajador->name)); ?>" alt="Foto">
+                    <?php endif; ?>
                 </div>
+                <h1><?php echo e($trabajador->name); ?> <?php echo e($trabajador->apellido); ?></h1>
+                <span class="worker-specialty"><?php echo e($trabajador->especialidad); ?></span>
+                <div class="profile-data">
+                    <div>
+                        <strong>Distrito</strong>
+                        <p><?php echo e($trabajador->distrito); ?></p>
+                    </div>
+                    <div>
+                        <strong>Experiencia</strong>
+                        <p><?php echo e(config('allinruway.experiencias')[$trabajador->experiencia] ?? 'No especificado'); ?></p>
+                    </div>
+                </div>
+                <a href="<?php echo e(route('contrataciones.create', $trabajador->id)); ?>" class="hire-btn">Solicitar servicio</a>
+            </aside>
 
-                <a href="<?php echo e(route('contrataciones.create', $trabajador->id)); ?>" class="hire-btn">
-                    Contratar trabajador
-                </a>
-
+            <!-- CONTENIDO DERECHO -->
+            <div class="profile-content">
+                <div class="content-card">
+                    <h2>Sobre el trabajador</h2>
+                    <p><?php echo e($trabajador->descripcion ?: 'Este trabajador aún no ha agregado una descripción.'); ?></p>
+                </div>
+                <div class="content-card">
+                    <h2>
+                        Servicios que realiza
+                    </h2>
+                    <div class="services-list">
+                        <span><?php echo e($trabajador->especialidad); ?></span>
+                    </div>
+                </div>
             </div>
-
         </div>
-
     </section>
-
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>

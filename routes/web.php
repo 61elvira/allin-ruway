@@ -58,3 +58,20 @@ Route::post(
     '/contrataciones',
     [ContratacionController::class, 'store']
 )->name('contrataciones.store');
+
+Route::get(
+    '/contrataciones',
+    [ContratacionController::class, 'index']
+)
+    ->middleware('auth')
+    ->name('contrataciones.index');
+
+Route::patch(
+    '/contrataciones/{contratacion}/aceptar',
+    [ContratacionController::class, 'aceptar']
+)->name('contrataciones.aceptar');
+
+Route::patch(
+    '/contrataciones/{contratacion}/rechazar',
+    [ContratacionController::class, 'rechazar']
+)->name('contrataciones.rechazar');

@@ -40,10 +40,7 @@
         </div>
     </section>
 
-    <?php if(!request()->filled('buscar') &&
-    !request()->filled('especialidad') &&
-    !request()->filled('distrito') &&
-    !request()->filled('experiencia')): ?>
+    <?php if(!$filtrosActivos): ?>
         <section class="categories-section">
             <h2>Categorías disponibles</h2>
             <div class="categories-grid">
@@ -66,7 +63,7 @@
     <?php endif; ?>
 
     <section class="workers">
-        <?php if(request()->filled('buscar')): ?>
+        <?php if($filtrosActivos): ?>
             <h3>Se encontraron <?php echo e($trabajadores->total()); ?> resultado(s) para "<?php echo e(request('buscar')); ?>"</h3>
         <?php else: ?>
             <h3>Trabajadores destacados</h3>
@@ -98,17 +95,23 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
+
         const boton = document.getElementById('toggleFilters');
         const panel = document.getElementById('filtersPanel');
+
         boton.addEventListener('click', () => {
             panel.classList.toggle('active');
         });
+
+        <?php if($filtrosActivos): ?>
+
+        document.querySelector('.workers').scrollIntoView({
+            behavior: 'smooth'
+        });
+
+        <?php endif; ?>
+
     });
-    <?php if(request()->filled('buscar')): ?>
-    document.querySelector('.workers').scrollIntoView({
-        behavior:'smooth'
-    });
-    <?php endif; ?>
     </script>
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>

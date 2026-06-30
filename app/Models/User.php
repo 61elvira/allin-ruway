@@ -53,4 +53,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function calificacionesRecibidas()
+    {
+        return $this->hasMany(Calificacion::class, 'trabajador_id');
+    }
+
+    public function calificacionesRealizadas()
+    {
+        return $this->hasMany(Calificacion::class, 'cliente_id');
+    }
 }
