@@ -25,23 +25,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // <-- Agrega tu código aquí abajo
-        DB::table('servicios')->insert([
-            [
-                'nombre' => 'Carpintería',
-                'descripcion' => 'Trabajos en madera'
-            ],
-            [
-                'nombre' => 'Electricidad',
-                'descripcion' => 'Instalaciones eléctricas'
-            ],
-            [
-                'nombre' => 'Albañilería',
-                'descripcion' => 'Construcción y remodelación'
-            ],
-            [
-                'nombre' => 'Pintura',
-                'descripcion' => 'Pintado de interiores y exteriores'
-            ]
+        $this->call([
+            ServicioSeeder::class,
         ]);
     }
 }

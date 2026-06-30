@@ -228,7 +228,7 @@
     color: #fff;
 }
 
-.card-icono--electricidad { background: var(--ar-terracota); }
+.card-icono--electricista { background: var(--ar-terracota); }
 .card-icono--gasfiteria { background: #4B7A9E; }
 .card-icono--carpinteria { background: #7A5C3E; }
 

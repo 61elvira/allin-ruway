@@ -1,0 +1,38 @@
+.dashboard-nav{
+    width:100%;
+    background:#ffffff;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.dashboard-nav-container{
+    max-width:1200px;
+    margin:auto;
+    height:70px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 30px;
+}
+
+.dashboard-logo{
+    text-decoration:none;
+    font-size:28px;
+    font-weight:800;
+    color:#7A1E2C;
+    letter-spacing:1px;
+}
+
+.dashboard-user-btn{
+    background:none;
+    border:none;
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    font-size:16px;
+    font-weight:600;
+}

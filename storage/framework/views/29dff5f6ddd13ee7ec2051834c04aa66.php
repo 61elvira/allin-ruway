@@ -8,119 +8,84 @@
 <?php $attributes = $attributes->except(\App\View\Components\AppLayout::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
-    <header class="dashboard-header">
-        <div class="logo">
-            <h1>ALLIN RUWAY</h1>
-        </div>
-
-        <div class="profile-menu">
-            <a href="<?php echo e(route('profile.edit')); ?>">
-                Mi Perfil
-            </a>
-        </div>
-    </header>
     <section class="dashboard-hero">
-
         <div class="hero-content">
-
             <h1>ALLIN RUWAY</h1>
-
-            <p>
-                Encuentra trabajadores confiables para cualquier proyecto.
-            </p>
-
+            <p>Encuentra trabajadores confiables para cualquier proyecto.</p>
             <form class="hero-search">
-
                 <input type="text" placeholder="¿Qué servicio buscas?">
-
-                <button type="submit">
-                    Buscar
-                </button>
-
+                <button type="submit">Buscar</button>
             </form>
-
         </div>
-
     </section>
+
     <section class="categories-section">
 
-        <h2>
-            Categorías disponibles
-        </h2>
+    <h2>Categorías disponibles</h2>
 
-        <div class="categories-grid">
+    <div class="categories-grid">
 
-            <?php $__currentLoopData = $servicios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $servicio): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <?php $__currentLoopData = $servicios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $servicio): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-                <div class="category-card">
+            <a href="<?php echo e(route('trabajadores.index', ['servicio' => $servicio->id])); ?>"class="category-card">
 
-                    <?php echo e($servicio->nombre); ?>
+                <div class="category-icon">
 
+                    <?php switch($servicio->nombre):
+
+                        case ('Electricista'): ?>
+                            ⚡
+                            <?php break; ?>
+
+                        <?php case ('Carpintero'): ?>
+                            🪚
+                            <?php break; ?>
+
+                        <?php case ('Gasfitero'): ?>
+                            🚰
+                            <?php break; ?>
+
+                        <?php default: ?>
+                            🛠️
+
+                    <?php endswitch; ?>
 
                 </div>
 
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <h3><?php echo e($servicio->nombre); ?></h3>
 
-        </div>
+                <p><?php echo e($servicio->descripcion); ?></p>
 
-    </section>
+            </a>
+
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+    </div>
+
+</section>
+
     <section class="workers">
-
         <h3>Trabajadores destacados</h3>
-
         <div class="workers-grid">
-
             <?php $__empty_1 = true; $__currentLoopData = $trabajadores; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $trabajador): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-
                 <div class="worker-card">
-
                     <div class="worker-avatar">
-
                         <?php if($trabajador->foto): ?>
-
-                            <img src="<?php echo e(asset('storage/' . $trabajador->foto)); ?>" alt="Foto">
-
+                            <img src="<?php echo e(asset('storage/' . $trabajador->foto)); ?>" alt="Foto de <?php echo e($trabajador->name); ?>">
                         <?php else: ?>
-
-                            <img src="https://ui-avatars.com/api/?name=<?php echo e(urlencode($trabajador->name)); ?>" alt="Foto">
-
+                            <img src="https://ui-avatars.com/api/?name=<?php echo e(urlencode($trabajador->name)); ?>"
+                                alt="Avatar de <?php echo e($trabajador->name); ?>">
                         <?php endif; ?>
-
                     </div>
-
-                    <h4>
-                        <?php echo e($trabajador->name); ?>
-
-                        <?php echo e($trabajador->apellido); ?>
-
-                    </h4>
-
-                    <p>
-                        <?php echo e($trabajador->especialidad ?? 'Sin especialidad'); ?>
-
-                    </p>
-
-                    <p>
-                        <?php echo e($trabajador->distrito ?? 'Distrito no registrado'); ?>
-
-                    </p>
-
-                    <a href="<?php echo e(route('trabajadores.show', $trabajador->id)); ?>">
-                        Ver perfil
-                    </a>
-
+                    <h4><?php echo e($trabajador->name); ?> <?php echo e($trabajador->apellido); ?></h4>
+                    <p><?php echo e($trabajador->especialidad ?? 'Sin especialidad'); ?></p>
+                    <p><?php echo e($trabajador->distrito ?? 'Distrito no registrado'); ?></p>
+                    <a href="<?php echo e(route('trabajadores.show', $trabajador->id)); ?>">Ver perfil</a>
                 </div>
-
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-
-                <p>
-                    No hay trabajadores registrados todavía.
-                </p>
-
+                <p>No hay trabajadores registrados todavía.</p>
             <?php endif; ?>
-
         </div>
-
     </section>
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>

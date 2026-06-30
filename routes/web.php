@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TrabajadorController;
+use App\Http\Controllers\ContratacionController;
 
 Route::get('/', function () {
     return view('casa');
@@ -33,7 +34,27 @@ Route::post('/convertirse-trabajador', function () {
 
 })->middleware('auth');
 
+
 Route::get(
     '/trabajadores/{id}',
     [TrabajadorController::class, 'show']
 )->name('trabajadores.show');
+Route::get('/trabajadores', function () {
+    return view('trabajadores.index');
+})->name('trabajadores.index');
+
+
+Route::get('/contrataciones/crear/{trabajador}', [ContratacionController::class, 'create'])
+    ->middleware('auth')
+    ->name('contrataciones.create');
+
+
+Route::get(
+    '/contrataciones/crear/{trabajador}',
+    [ContratacionController::class, 'create']
+)->name('contrataciones.create');
+
+Route::post(
+    '/contrataciones',
+    [ContratacionController::class, 'store']
+)->name('contrataciones.store');

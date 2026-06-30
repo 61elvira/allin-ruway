@@ -1,0 +1,1 @@
+<?php /**PATH C:\xampp\htdocs\NewAllin\allin-ruway\resources\views/components/dashboard-navbar.blade.php ENDPATH**/ ?>

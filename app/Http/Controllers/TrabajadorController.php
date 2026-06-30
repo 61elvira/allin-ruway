@@ -14,5 +14,6 @@ class TrabajadorController extends Controller
             'trabajadores.show',
             compact('trabajador')
         );
+
     }
 }

@@ -16,7 +16,7 @@
 
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
 
-        <?php echo $__env->make('layouts.navigation', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+        <?php echo $__env->make('layouts.dashboard-navigation', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
         <?php if(isset($header)): ?>
             <header class="bg-white dark:bg-gray-800 shadow">

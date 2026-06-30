@@ -17,10 +17,10 @@
             <a href="<?php echo e(route('login')); ?>" class="hero-btn">
                 Comenzar
             </a>
-
         </div>
 
     </section>
+
 
     <section id="servicios" class="section">
 

@@ -1,0 +1,73 @@
+.worker-profile{
+    padding:80px 10%;
+}
+
+.worker-profile-card{
+    background:#fff;
+
+    border-radius:25px;
+
+    padding:40px;
+
+    display:flex;
+
+    gap:40px;
+
+    align-items:flex-start;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+}
+
+.worker-photo img{
+    width:220px;
+
+    height:220px;
+
+    border-radius:20px;
+
+    object-fit:cover;
+}
+
+.worker-info{
+    flex:1;
+}
+
+.worker-info h1{
+    font-size:2rem;
+
+    margin-bottom:10px;
+}
+
+.worker-specialty{
+    display:inline-block;
+
+    background:#f4e5e5;
+
+    color:#b44343;
+
+    padding:8px 15px;
+
+    border-radius:10px;
+
+    margin-bottom:20px;
+}
+
+.worker-description{
+    margin-top:30px;
+}
+
+.hire-btn{
+    margin-top:30px;
+
+    background:#b44343;
+
+    color:white;
+
+    border:none;
+
+    padding:15px 25px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+}

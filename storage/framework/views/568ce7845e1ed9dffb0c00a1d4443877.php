@@ -9,36 +9,68 @@
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
 
-    <div class="worker-profile">
+    <section class="worker-profile">
 
-        <h1>
-            <?php echo e($trabajador->name); ?>
+        <div class="worker-profile-card">
 
-            <?php echo e($trabajador->apellido); ?>
+            <div class="worker-photo">
 
-        </h1>
+                <?php if($trabajador->foto): ?>
 
-        <p>
-            <?php echo e($trabajador->especialidad); ?>
+                    <img src="<?php echo e(asset('storage/' . $trabajador->foto)); ?>" alt="Foto">
 
-        </p>
+                <?php else: ?>
 
-        <p>
-            <?php echo e($trabajador->distrito); ?>
+                    <img src="https://ui-avatars.com/api/?name=<?php echo e(urlencode($trabajador->name)); ?>" alt="Foto">
 
-        </p>
+                <?php endif; ?>
 
-        <p>
-            <?php echo e($trabajador->experiencia); ?>
+            </div>
 
-        </p>
+            <div class="worker-info">
 
-        <p>
-            <?php echo e($trabajador->descripcion); ?>
+                <h1>
+                    <?php echo e($trabajador->name); ?>
 
-        </p>
+                    <?php echo e($trabajador->apellido); ?>
 
-    </div>
+                </h1>
+
+                <span class="worker-specialty">
+                    <?php echo e($trabajador->especialidad); ?>
+
+                </span>
+
+                <p>
+                    📍 <?php echo e($trabajador->distrito); ?>
+
+                </p>
+
+                <p>
+                    💼 <?php echo e($trabajador->experiencia); ?>
+
+                </p>
+
+                <div class="worker-description">
+
+                    <h3>Sobre mí</h3>
+
+                    <p>
+                        <?php echo e($trabajador->descripcion); ?>
+
+                    </p>
+
+                </div>
+
+                <a href="<?php echo e(route('contrataciones.create', $trabajador->id)); ?>" class="hire-btn">
+                    Contratar trabajador
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
 
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
