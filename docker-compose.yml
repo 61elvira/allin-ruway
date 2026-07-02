@@ -1,0 +1,78 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: allin-app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+    networks:
+      - allin
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+  nginx:
+    image: nginx:alpine
+    container_name: allin-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - allin
+    depends_on:
+      - app
+
+  mysql:
+    image: mysql:8.0
+    container_name: allin-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: base_allin
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - allin
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: allin-redis
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    networks:
+      - allin
+
+  node:
+    image: node:22-alpine
+    container_name: allin-node
+    working_dir: /var/www
+    command: sh -c "npm install && npm run dev"
+    volumes:
+      - .:/var/www
+    ports:
+      - "5173:5173"
+    networks:
+      - allin
+    depends_on:
+      - app
+
+volumes:
+  mysql_data:
+  redis_data:
+
+networks:
+  allin:
+    driver: bridge

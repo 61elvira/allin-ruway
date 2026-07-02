@@ -1,0 +1,12 @@
+.git
+.gitignore
+.vscode
+.idea
+.env
+node_modules
+vendor
+docker
+.dockerignore
+# Docker volumes
+mysql_data
+redis_data
