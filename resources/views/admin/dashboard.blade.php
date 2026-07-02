@@ -2,7 +2,13 @@
 
 @section('content')
 <div class="admin-content-wrapper">
-    <h1 class="page-title">Dashboard</h1>
+    <div class="admin-header-row">
+        <h1 class="page-title">Dashboard</h1>
+        <div class="admin-header-actions">
+            <a href="{{ route('admin.usuarios') }}" class="btn btn--outline btn--sm">Gestionar Usuarios</a>
+            <a href="{{ route('admin.servicios') }}" class="btn btn--outline btn--sm">Gestionar Servicios</a>
+        </div>
+    </div>
 
     {{-- Stats Cards --}}
     <div class="admin-stats">
@@ -71,6 +77,50 @@
             <h3 class="admin-chart-card__title">Usuarios por rol</h3>
             <div class="admin-chart-card__body">
                 <canvas id="chartUsuarios"></canvas>
+            </div>
+        </div>
+    </div>
+
+    {{-- Ingresos Chart --}}
+    <div class="admin-charts" style="grid-template-columns:1fr 1fr">
+        <div class="admin-chart-card">
+            <h3 class="admin-chart-card__title">Ingresos por mes (S/)</h3>
+            <div class="admin-chart-card__body">
+                <canvas id="chartIngresos"></canvas>
+            </div>
+        </div>
+
+        <div class="admin-chart-card">
+            <h3 class="admin-chart-card__title">Top trabajadores mejor calificados</h3>
+            <div class="admin-chart-card__body">
+                @if($topTrabajadores->count())
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Trabajador</th>
+                            <th>Promedio</th>
+                            <th>Reseñas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($topTrabajadores as $i => $t)
+                            <tr>
+                                <td>{{ $i + 1 }}</td>
+                                <td>{{ $t->name }} {{ $t->apellido }}</td>
+                                <td>
+                                    <span style="color:#D4AF37;font-weight:700">
+                                        {{ number_format($t->calificaciones_avg_puntuacion, 1) }}
+                                    </span>
+                                </td>
+                                <td>{{ $t->calificaciones_count ?? $t->calificaciones()->count() }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                @else
+                    <p style="color:var(--text-muted);text-align:center;padding:20px">Sin calificaciones aún.</p>
+                @endif
             </div>
         </div>
     </div>
@@ -207,6 +257,41 @@
                                 position: 'bottom',
                                 labels: { padding: 16, usePointStyle: true }
                             }
+                        }
+                    }
+                });
+
+                new Chart(document.getElementById('chartIngresos'), {
+                    type: 'line',
+                    data: {
+                        labels: {!! json_encode($meses) !!},
+                        datasets: [{
+                            label: 'S/',
+                            data: {!! json_encode($datosIngresos) !!},
+                            backgroundColor: 'rgba(5, 150, 105, 0.1)',
+                            borderColor: '#059669',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.3,
+                            pointBackgroundColor: '#059669',
+                            pointRadius: 4,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(ctx) {
+                                        return 'S/ ' + ctx.parsed.y.toFixed(2);
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { callback: function(v) { return 'S/ ' + v; } } },
+                            x: { grid: { display: false } }
                         }
                     }
                 });
