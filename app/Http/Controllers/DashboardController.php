@@ -6,6 +6,7 @@ use App\Models\Servicio;
 use App\Models\User;
 use App\Models\Contratacion;
 use App\Models\Calificacion;
+use App\Models\Ganancia;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -27,6 +28,8 @@ class DashboardController extends Controller
             $stats['finalizadas'] = (clone $contrataciones)->where('estado', 'finalizado')->count();
             $stats['promedio'] = Calificacion::where('trabajador_id', $user->id)->avg('puntuacion');
             $stats['total_resenas'] = Calificacion::where('trabajador_id', $user->id)->count();
+            $stats['total_ganado'] = Ganancia::where('trabajador_id', $user->id)->where('estado', 'pagado')->sum('monto');
+            $stats['servicios_ofrecidos'] = \App\Models\TrabajadorServicio::where('trabajador_id', $user->id)->count();
         } elseif ($user->isCliente()) {
             $contrataciones = Contratacion::where('cliente_id', $user->id);
             $stats['total_contrataciones'] = (clone $contrataciones)->count();
@@ -35,12 +38,13 @@ class DashboardController extends Controller
             $stats['finalizadas'] = (clone $contrataciones)->where('estado', 'finalizado')->count();
         }
 
-        $contratacionesPorMes = Contratacion::selectRaw('MONTH(created_at) as mes, COUNT(*) as total')
-            ->whereYear('created_at', date('Y'))
-            ->groupBy('mes')
-            ->orderBy('mes')
-            ->pluck('total', 'mes')
-            ->toArray();
+        $contratacionesDelAno = Contratacion::whereYear('created_at', date('Y'))
+            ->get(['created_at']);
+        $contratacionesPorMes = [];
+        foreach ($contratacionesDelAno as $c) {
+            $m = $c->created_at->month;
+            $contratacionesPorMes[$m] = ($contratacionesPorMes[$m] ?? 0) + 1;
+        }
 
         $meses = [];
         $datosContratos = [];
