@@ -8,6 +8,10 @@
 
     <title>Allin Ruway</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{asset('css/style.css') }}">
 </head>
@@ -27,25 +31,25 @@
         document.addEventListener('DOMContentLoaded', function () {
 
             const menuBtn = document.getElementById('menuToggle');
-
             const navLinks = document.getElementById('navLinks');
 
-            menuBtn.addEventListener('click', function () {
+            if (menuBtn && navLinks) {
+                menuBtn.addEventListener('click', function () {
+                    navLinks.classList.toggle('active');
+                    menuBtn.innerHTML = navLinks.classList.contains('active') ? '✕' : '☰';
+                });
+            }
 
-                navLinks.classList.toggle('active');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('section-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
 
-                if (navLinks.classList.contains('active')) {
-
-                    menuBtn.innerHTML = '✕';
-
-                } else {
-
-                    menuBtn.innerHTML = '☰';
-
-                }
-
-            });
-
+            document.querySelectorAll('.section-hidden').forEach(el => observer.observe(el));
         });
 
     </script>

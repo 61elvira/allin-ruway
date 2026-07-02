@@ -22,6 +22,12 @@
 
                 <x-slot name="content">
 
+                    @if(auth()->user()->isAdmin())
+                        <x-dropdown-link :href="route('admin.dashboard')">
+                            Admin Panel
+                        </x-dropdown-link>
+                    @endif
+
                     <x-dropdown-link :href="route('profile.edit')">
                         Mi Perfil
                     </x-dropdown-link>

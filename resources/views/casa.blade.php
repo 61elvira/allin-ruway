@@ -24,7 +24,7 @@
     </section>
 
 
-    <section id="servicios" class="section">
+    <section id="servicios" class="section section-hidden">
 
         <h2 class="section-title">
             Servicios Disponibles
@@ -120,7 +120,7 @@
 
     </section>
 
-    <section id="beneficios" class="beneficios-section">
+    <section id="beneficios" class="beneficios-section section-hidden">
 
         <div class="beneficios-container">
 
@@ -194,7 +194,7 @@
 
     </section>
 
-    <section id="soporte" class="section">
+    <section id="soporte" class="section section-hidden">
 
         <h2>Soporte</h2>
 

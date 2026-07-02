@@ -1,47 +1,41 @@
-<section>
-    <header>
-        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Update Password') }}
-        </h2>
+<section class="profile-card">
+    <div class="profile-card__header">
+        <div class="profile-card__header-left">
+            <h2 class="profile-card__title">Actualizar contraseña</h2>
+            <p class="profile-card__subtitle">Asegúrate de usar una contraseña larga y aleatoria para mantener tu cuenta segura.</p>
+        </div>
+    </div>
 
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __('Ensure your account is using a long, random password to stay secure.') }}
-        </p>
-    </header>
-
-    <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('password.update') }}" class="profile-card__form">
         @csrf
         @method('put')
 
-        <div>
-            <x-input-label for="update_password_current_password" :value="__('Current Password')" />
-            <x-text-input id="update_password_current_password" name="current_password" type="password" class="mt-1 block w-full" autocomplete="current-password" />
+        <div class="form-group">
+            <label for="update_password_current_password" class="form-label">Contraseña actual</label>
+            <input id="update_password_current_password" name="current_password" type="password" class="form-input" autocomplete="current-password">
             <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
         </div>
 
-        <div>
-            <x-input-label for="update_password_password" :value="__('New Password')" />
-            <x-text-input id="update_password_password" name="password" type="password" class="mt-1 block w-full" autocomplete="new-password" />
-            <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
+        <div class="form-row">
+            <div class="form-group">
+                <label for="update_password_password" class="form-label">Nueva contraseña</label>
+                <input id="update_password_password" name="password" type="password" class="form-input" autocomplete="new-password">
+                <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
+            </div>
+            <div class="form-group">
+                <label for="update_password_password_confirmation" class="form-label">Confirmar contraseña</label>
+                <input id="update_password_password_confirmation" name="password_confirmation" type="password" class="form-input" autocomplete="new-password">
+                <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
+            </div>
         </div>
 
-        <div>
-            <x-input-label for="update_password_password_confirmation" :value="__('Confirm Password')" />
-            <x-text-input id="update_password_password_confirmation" name="password_confirmation" type="password" class="mt-1 block w-full" autocomplete="new-password" />
-            <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
-
+        <div class="profile-card__actions">
+            <button type="submit" class="btn btn--primary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                Guardar contraseña
+            </button>
             @if (session('status') === 'password-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600 dark:text-gray-400"
-                >{{ __('Saved.') }}</p>
+                <span class="save-feedback">✓ Contraseña actualizada correctamente.</span>
             @endif
         </div>
     </form>
