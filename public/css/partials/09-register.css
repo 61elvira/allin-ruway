@@ -1,84 +1,16 @@
-.register-header{
-
-    text-align:center;
-
-    margin-bottom:35px;
-
-}
-.register-header h1{
-
-    color:#5a1212;
-
-    font-size:2rem;
-
-    font-weight:700;
-
-    margin-bottom:10px;
-
-}
-.register-header p{
-
-    color:#666;
-
-    line-height:1.6;
-
-}
-/*esto es el fondo xd*/
-.register-header h1{
-    line-height: 1.1;
+.register-header {
+  text-align: center;
+  margin-bottom: 32px;
 }
 
-.register-btn{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin-top: 0.1px;
-    background: linear-gradient(
-    135deg,
-    #7b6754,
-    #9a846d
-) !important;
-
-    border:none !important;
-
-    color:white !important;
-
-    border-radius:12px !important;
-
-    padding:14px 30px !important;
-
-    font-weight:700;
-
-    transition:.3s;
-
-}
-.register-actions{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-top:25px;
-
-}
-.register-btn {
-    display: block;
-    width: 50%;
-    text-align: center;
-    padding: 13px 16px;
-    border: 1.5px solid var(--ink);
-    border-radius: 10px;
-    color: var(--ink);
-    font-weight: 700;
-    text-decoration: none;
-    transition: background .2s, color .2s;
-    padding-top: 20px;
+.register-header h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 8px;
 }
 
-.register-btn:hover {
-    background: #171716;
-    color: var(--cream);
+.register-header p {
+  color: var(--text-muted);
+  font-size: 0.925rem;
 }

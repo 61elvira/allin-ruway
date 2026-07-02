@@ -1,71 +1,44 @@
-/* ==========================================================================
-   SECCIONES pos ya que ni modo, asi me dijo el chat 
-   ========================================================================== */
-
 .section {
-    background: white;
-    padding: 100px 80px;
+  padding: 100px 80px;
+  background: var(--bg);
 }
 
 .section-title {
-    text-align: center;
-    font-size: 3rem;
-    font-weight: 800;
-    color: #5a1212;
-    margin-bottom: 15px;
-    position: relative;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
 }
 
 .section-title::after {
-    content: "";
-    width: 120px;
-    height: 5px;
-    background: linear-gradient(90deg, #5a1212, #d16a1d);
-    display: block;
-    margin: 15px auto 0;
-    border-radius: 10px;
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--accent);
+  margin: 16px auto 0;
+  border-radius: 4px;
 }
 
-.section h2 {
-    text-align: center;
-    margin-bottom: 40px;
+.section-subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 50px;
 }
 
 .section:first-of-type {
-    margin-top: -50px;
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
-    position: relative;
-    z-index: 5;
-    background: rgb(253, 253, 253);
+  margin-top: -60px;
+  border-radius: 40px 40px 0 0;
+  position: relative;
+  z-index: 5;
+  background: var(--bg);
 }
 
-.service-content {
-    position: relative;
-    z-index: 2;
-    padding: 25px;
-    background: white;
-}
-
-.service-content h3 {
-    color: #5a1212;
-    font-size: 1.4rem;
-    margin-bottom: 10px;
-    font-weight: 700;
-}
-
-.service-content p {
-    color: #666;
-    line-height: 1.6;
-}
-
-/* Secciones — móvil */
 @media (max-width: 768px) {
-    .section {
-        padding: 70px 25px;
-    }
-
-    .section-title {
-        font-size: 2rem;
-    }
+  .section { padding: 70px 24px; }
+  .section-title { font-size: 2rem; }
 }

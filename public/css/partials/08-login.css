@@ -1,371 +1,207 @@
-/* ==========================================================================
-   LOGIN / REGISTRO — guest.blade.php, login.blade.php, register.blade.php
-   Paleta: beige + negro. Las variables viven en .login-page (el <body>)
-   para no chocar con el resto del sitio (rojo/dorado).
-   ========================================================================== */
-
 .login-page {
-    --ink: #15130f;
-    --ink-soft: #2b2620;
-    --beige-deep: #c9b48b;
-    --beige: #e8dec4;
-    --cream: #f8f4ea;
-    --taupe: #150e0e;
-
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    overflow: hidden;
-    font-family: 'Work Sans', sans-serif;
-    background: var(--ink);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #f8f7f4 0%, #eeedea 100%);
+  position: relative;
 }
 
 .login-page::before {
-    content: '';
-    position: absolute;
-    width: 520px;
-    height: 520px;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.18);
-    top: -140px;
-    left: -120px;
-    filter: blur(90px);
+  content: '';
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,93,117,0.08) 0%, transparent 70%);
+  top: -200px;
+  right: -200px;
+  pointer-events: none;
 }
 
 .login-page::after {
-    content: '';
-    position: absolute;
-    width: 420px;
-    height: 420px;
-    border-radius: 50%;
-    background: rgba(1, 1, 1, 0.25);
-    bottom: -120px;
-    right: -100px;
-    filter: blur(90px);
+  content: '';
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(26,26,46,0.06) 0%, transparent 70%);
+  bottom: -150px;
+  left: -150px;
+  pointer-events: none;
 }
 
-/* Viñeta suave: lleva el ojo directo a la tarjeta */
-.login-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, .45) 100%);
-}
+.login-overlay { display: none; }
 
 .login-wrapper {
-    width: 90%;
-    max-width: 1400px;
-    min-height: 650px;
-    height: 90vh;
-    display: flex;
-    overflow: hidden;
-    border-radius: 22px;
-    background: var(--cream);
-    box-shadow: 0 30px 70px rgba(173, 98, 98, 0.45);
-    z-index: 1;
+  width: 100%;
+  max-width: 440px;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  animation: scaleIn 0.4s ease;
+  position: relative;
 }
 
-/* Cenefa escalonada — motivo textil andino, la firma visual de la marca */
 .login-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 10px;
-    z-index: 3;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10' viewBox='0 0 40 10'%3E%3Cpath d='M0 10 L0 6 L10 6 L10 0 L20 0 L20 6 L30 6 L30 10 Z' fill='%2315130f'/%3E%3C/svg%3E");
-    background-repeat: repeat-x;
-    background-size: 40px 10px;
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, #d96b2b, #5a1212);
 }
 
-.login-image {
-    position: relative;
-    flex: 0.9;
-}
-
-.login-image::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(190deg, rgba(21, 19, 15, .10), rgba(21, 19, 15, .65));
-    mix-blend-mode: multiply;
-}
-
-.login-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: saturate(.85) contrast(1.05);
-}
-
-.login-image-caption {
-    position: absolute;
-    left: 30px;
-    bottom: 26px;
-    z-index: 1;
-    color: var(--cream);
-    font-size: .8rem;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-}
+.login-image { display: none; }
 
 .login-card {
-    flex: 1;
-    background: var(--cream);
-    padding: 60px 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  padding: 48px 36px;
 }
 
 .login-title {
-    text-align: center;
-    color: var(--ink);
-    font-family: 'Fraunces', serif;
-    font-weight: 600;
-    font-size: 2.4rem;
-    letter-spacing: .01em;
-    line-height: 1.1;
-   
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 4px;
+  letter-spacing: -0.02em;
 }
 
 .login-tagline {
-    text-align: center;
-    color: var(--taupe);
-    font-size: .85rem;
-    letter-spacing: .06em;
-    margin-bottom: 35px;
+  display: none;
+}
+
+.login-card form > div {
+  margin-bottom: 20px;
 }
 
 .login-card label {
-    color: var(--taupe) !important;
-    font-weight: 600;
-    font-size: .78rem;
-    letter-spacing: .04em;
-    text-transform: uppercase;
-}
-
-/* Etiqueta y campo siempre uno debajo del otro, mismo ancho */
-.login-card form > div {
-    display: flex;
-    flex-direction: column;
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
 }
 
 .login-card input:not([type="checkbox"]) {
-    background: var(--beige) !important;
-    color: var(--ink) !important;
-    border: 1px solid var(--beige-deep) !important;
-    border-radius: 10px !important;
-    padding: 14px 16px !important;
-    font-size: 1.05rem !important;
-    line-height: 1.3 !important;
-    width: 100% !important;
-    transition: border-color .2s, box-shadow .2s;
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  color: var(--text);
+  background: var(--bg);
+  transition: var(--transition);
+  outline: none;
 }
 
-.login-card input::placeholder {
-    color: var(--taupe);
-    opacity: .65;
-}
-
-/* Más aire entre el casillero de correo y el de contraseña */
-.login-card form > div:nth-of-type(2) {
-    margin-top: 28px !important;
-}
-
-.login-card input:not([type="checkbox"]):focus {
-    border-color: var(--ink) !important;
-    box-shadow: 0 0 0 3px rgba(21, 19, 15, .12);
-    outline: none;
+.login-card input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(232,93,117,0.12);
+  background: var(--surface);
 }
 
 .login-card input[type="checkbox"] {
-    accent-color: var(--ink);
-}
-
-.login-card p {
-    color: var(--ink-soft) !important;
-}
-
-.login-card a {
-    color: var(--taupe) !important;
-    transition: color .2s;
-}
-
-.login-card a:hover {
-    color: var(--ink) !important;
+  accent-color: var(--accent);
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
 }
 
 .login-card button[type="submit"] {
-    background: var(--ink) !important;
-    color: var(--cream) !important;
-    border-radius: 10px !important;
-    transition: transform .2s, background .2s;
-    padding: 15px 18px !important;
+  width: 100%;
+  padding: 15px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 600;
+  transition: var(--transition);
+  box-shadow: 0 4px 16px rgba(232,93,117,0.3);
 }
 
 .login-card button[type="submit"]:hover {
-    background: var(--ink-soft) !important;
-    transform: translateY(-1px);
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(232,93,117,0.4);
 }
 
-/* Botón principal grande y de ancho completo, al estilo Facebook */
-.login-submit {
-    display: flex !important;
-    width: 100% !important;
-    justify-content: center !important;
-    padding: 14px 16px !important;
-    font-size: 1.05rem !important;
-    font-weight: 700 !important;
-    letter-spacing: .02em !important;
+.login-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
 }
 
-
-.login-forgot {
-    text-align: center;
-    margin-top: 14px;
-    margin-bottom: 20px;
+.login-btn {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--primary);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: var(--transition);
 }
 
-.login-forgot a {
-    color: var(--taupe) !important;
-    font-size: .85rem;
-    text-decoration: underline;
+.login-btn:hover {
+  background: var(--primary-light);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
 }
 
-.login-forgot a:hover {
-    color: var(--ink) !important;
+.forgot-link {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  transition: var(--transition);
 }
 
-.login-divider {
-    height: 1px;
-    background: var(--beige-deep);
-    margin: 26px 0 22px;
-}
-.login-btn{
+.forgot-link:hover { color: var(--accent); }
 
-    width:50%;
-
-    padding:14px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:linear-gradient(
-        135deg,
-        #eb8c63,
-        #0d0d0c
-    );
-
-    color:white;
-
-    font-size:1rem;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:.3s ease;
-
-    box-shadow:
-        0 8px 20px rgba(201, 164, 118, 0.25);
-
+.register-btn {
+  width: 100%;
+  padding: 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: center;
+  transition: var(--transition);
 }
 
-.login-btn:hover{
-
-    transform:translateY(-2px);
-
-    box-shadow:
-        0 12px 25px rgba(140,79,36,.35);
-
+.register-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-light);
 }
-
 
 .back-home {
-    position: fixed;
-    top: 25px;
-    left: 25px;
-    z-index: 9999;
-    display: inline-block;
-    background: rgba(1, 1, 1, 0.12);
-    backdrop-filter: blur(10px);
-    color: var(--cream);
-    text-decoration: none;
-    padding: 12px 24px;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: .9rem;
-    border: 1px solid rgba(3, 3, 3, 0.25);
-    transition: .3s;
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 100;
+  padding: 10px 20px;
+  background: var(--surface);
+  color: var(--text);
+  border-radius: var(--radius-full);
+  font-weight: 500;
+  font-size: 0.875rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  border: 1px solid var(--border);
 }
 
 .back-home:hover {
-    background: var(--cream);
-    color: var(--ink);
-    transform: translateY(-2px);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent);
 }
 
-/* Login — móvil */
 @media (max-width: 768px) {
-    .login-wrapper {
-        flex-direction: column;
-    }
-
-    .login-image {
-        display: none;
-    }
-
-    .login-card {
-        padding: 45px 30px;
-    }
-
-    .login-title {
-        font-size: 2rem;
-    }
-}
-
-/* Separación entre los campos */
-.login-card form > div {
-    margin-bottom: 18px;
-}
-
-/* Contenedor del checkbox */
-.remember-me {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 10px;
-    margin-bottom: 15px;
-}
-
-/* Enlace de contraseña */
-.login-forgot {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-/* Botón Acceso */
-.login-submit {
-    margin-top: 15px;
-}
-
-/*wedaniasdajsd css de inicar sesion, contrasenia y crear cuenta creo*/
-.login-actions{
-
-    display:flex;
-
-    flex-direction:column;
-    align-items: center;
-    gap:15px;
-
-    margin-top:25px;
-
+  .login-card { padding: 36px 24px; }
+  .back-home { top: 16px; left: 16px; padding: 8px 16px; font-size: 0.8rem; }
 }
