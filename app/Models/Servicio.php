@@ -12,4 +12,9 @@ class Servicio extends Model
         'nombre',
         'descripcion'
     ];
+
+    public function contrataciones()
+    {
+        return $this->hasMany(Contratacion::class, 'servicio_id');
+    }
 }

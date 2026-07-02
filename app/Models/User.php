@@ -2,22 +2,18 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Database\Factories\UserFactory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
+    const ROL_ADMIN = 'admin';
+    const ROL_TRABAJADOR = 'trabajador';
+    const ROL_CLIENTE = 'cliente';
+
     protected $fillable = [
         'name',
         'apellido',
@@ -31,21 +27,12 @@ class User extends Authenticatable
         'rol',
         'password',
     ];
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
+
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [
@@ -53,6 +40,22 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function isAdmin(): bool
+    {
+        return $this->rol === self::ROL_ADMIN;
+    }
+
+    public function isTrabajador(): bool
+    {
+        return $this->rol === self::ROL_TRABAJADOR;
+    }
+
+    public function isCliente(): bool
+    {
+        return $this->rol === self::ROL_CLIENTE;
+    }
+
     public function calificacionesRecibidas()
     {
         return $this->hasMany(Calificacion::class, 'trabajador_id');
@@ -62,11 +65,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(Calificacion::class, 'cliente_id');
     }
+
     public function calificaciones()
     {
-        return $this->hasMany(
-            Calificacion::class,
-            'trabajador_id'
-        );
+        return $this->hasMany(Calificacion::class, 'trabajador_id');
+    }
+
+    public function contratacionesComoCliente()
+    {
+        return $this->hasMany(Contratacion::class, 'cliente_id');
+    }
+
+    public function contratacionesComoTrabajador()
+    {
+        return $this->hasMany(Contratacion::class, 'trabajador_id');
     }
 }
